@@ -1,0 +1,761 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\newgeometry{left=3cm,bottom=2cm, right=3cm, top=2cm}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{charter}
+%-------------------------------------------------------------------------
+\newenvironment{definition}[1][OrangeRed]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+%-------------------------------------------------------------------------
+\newenvironment{theorem}[1][Violet]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+%-------------------------------------------------------------------------
+\newenvironment{information}[1][Cerulean]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+%-------------------------------------------------------------------------
+\newenvironment{framered}[1][Maroon]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+%-------------------------------------------------------------------------
+\title{\huge{\textbf{\textit{Calculus I}}}\\
+\Large\textbf{\textit{Summarised Notes}}\\
+MTH4100 - Year 1 Semester 1}
+
+\author{Adam Curry}
+\date{September - December 2022}
+
+\begin{document}
+\maketitle
+\tableofcontents
+%-------------------------------------------------------------------------
+\chapter{Functions}
+%-------------------------------------------------------------------------
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (a Function):}\\
+    A function from a set $D$ to a set Y is a rule $f(x)$ that assigns a unique value $f(x) \in Y$ to each element $x \in D$.}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Natural Domain):}\\
+   The \textbf{natural domain} of $f$ is $S$, the largest real-valued subset of $D$, such that for all $x \in S$, $f(x)$ is a real value}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Monotonicity):}
+   \begin{itemize}
+       \item A function $f$ is \textbf{monotonically increasing} if for any $x_1 < x_2$, $f(x_1) < f(x_2)$.
+       \item A function $f$ is \textbf{monotonically decreasing} if for any $x_1 < x_2$, $f(x_1) < f(x_2)$.
+   \end{itemize}}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Odd \& Even Functions):}
+   \begin{itemize}
+       \item A function $f$ is \textbf{even} if for any $x \in D$; $f(x) = f(-x)$.
+       \item A function $f$ is \textbf{odd} if for any $x \in D$; $f(-x) = -f(x)$.
+   \end{itemize}}
+\end{definition}
+
+%-------------------------------------------------------------------------
+\chapter{Limits and Continuity}
+%-------------------------------------------------------------------------
+\section{Limits}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Limits):}\\
+   For a sequence $x_n$, for any value $c \in \mathbb{R}$, there exists a value $n \in \mathbb{N}$ such that $x_n > c$, then we say that $x_n$ approaches infinity and write $x_n \longrightarrow \infty$.\\
+   Similar for $x_n \longrightarrow -\infty$.}
+\end{definition}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Limit Laws):}\\
+    Let $f$ and $g$ denote two functions defined on some set $(a,c) \cup (c,b)$ (with $a < b < c$) with\\
+    $\lim_{x\to c} f(x) = L, \lim_{x \to c} g(x) = M, \; \; \; \; \;L, M \in \mathbb{R}$
+    \begin{equation}
+        \lim_{x \to c} (f(x) + g(x)) = L + M
+    \end{equation}
+    \begin{equation}
+        \lim_{x \to c} (f(x) - g(x)) = L - M
+    \end{equation}}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem:} (Sandwich Theorem):}\\
+    $f(x) < g(x) < h(x)$\\
+    If $\lim_{x \to c} f(x) = L$ and $\lim_{x \to c} h(x) = L$, then\\
+    $\lim_{x \to c} g(x) = L$.}
+\end{theorem}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (One-Sided Limits):}\\
+    Assuming the domain of $f$ contains an interval $(c,d)$ to the right of $c$, we say $f(x)$ has a \textbf{right-handed limit} at $c$, and write 
+    \begin{equation}
+        \lim_{x \to c^+} f(x) = L
+    \end{equation}
+    if for every number $\epsilon > 0$ there exists a corresponding number $ \delta > 0$ such that $|f(g) - L| < \epsilon$ whenever $c < x< c + \delta$.\\
+    \textcolor{White}{123}\\
+    Assuming the domain of $f$ contains an interval $(c,d)$ to the left of $c$, we say $f(x)$ has a \textbf{left-handed limit} at $c$, and write 
+    \begin{equation}
+        \lim_{x \to c^-} f(x) = L
+    \end{equation}
+    if for every number $\epsilon > 0$ there exists a corresponding number $ \delta > 0$ such that $|f(g) - L| < \epsilon$ whenever $c - \delta< x < c$.}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Limits as x Approaches Infinity):}\\
+    We say $f(x)$ has the limit $L$ as $x$ approaches infinity and write
+    \begin{equation}
+        \lim_{x \to \infty} f(x) = L
+    \end{equation}
+    if for every number $\epsilon > 0$, there exists a corresponding number $M$ such that for all $x$ in the domain of $f$; $|f(x) - L| < \epsilon$ whenever $x > M$.}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Limits Approaching Infinity):}\\
+    We say $f(x)$ approaches infinity as $x$ approaches $c$, and write
+    \begin{equation}
+        \lim_{x \to c} f(x) = \infty
+    \end{equation}
+   if for every positive real number $B$ there exists a corresponding $\epsilon > 0$ such that $f(x) > B$ whenever $0 < |x - c| < \epsilon$.}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Horizontal Asymptotes):}\\
+    A line $y = b$ is a \textbf{horizontal asymptote} of the graph of a function $y=f(x)$ if either;
+    \begin{equation}
+        \lim_{x \to \infty} f(x) = b \; \; \; \; \; \; or \; \; \; \; \; \; \lim_{x \to -\infty} f(x) = b
+    \end{equation}}
+\end{definition}
+
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Vertical Asymptotes):}\\
+    A line $y = x$ is a \textbf{vertical asymptote} of the graph of a function $y=f(x)$ if either;
+    \begin{equation}
+        \lim_{x \to a^+} f(x) = \pm \: \infty \; \; \; \; \; \; or \; \; \; \; \; \; \lim_{x \to a^-} f(x) = \pm \: \infty
+    \end{equation}}
+\end{definition}
+
+%-------------------------------------------------------------------------
+\section{Continuity}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Continuity):}\\
+   Let $c$ be a real number that is either an interior point or an endpoint of an interval in the domain of $f$.\\
+   \begin{itemize}
+       \item The function $f$ is continuous at $c$ if
+       \begin{equation}
+           \lim_{x \to c} f(x) = f(c)
+       \end{equation}
+       \item The function $f$ is right-continuous at $c$ if
+       \begin{equation}
+           \lim_{x \to c^+} f(x) = f(c)
+       \end{equation}
+       \item The function $f$ is left-continuous at $c$ if
+       \begin{equation}
+           \lim_{x \to c^-} f(x) = f(c)
+       \end{equation}
+   \end{itemize}}
+\end{definition}
+
+\pagebreak
+A function $f(x)$ is continuous at a point $x = c$ iff:
+\begin{itemize}
+    \item $f(c)$ exists - $c$ lies in the domain of $f$.
+    \item $\lim_{x \to c} f(x)$ exists
+    \item $\lim_{x \to c} f(x) = f(c)$.\\
+\end{itemize}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem:} (Properties of Continuous Functions):}\\
+    If the function $f$ and $g$ are continuous at $x = c$, then the following are also continuous;
+    \begin{itemize}
+        \item Sums and differences - $f + g$
+        \item Multiples - $k \cdot f$ for any $k$.
+        \item Products and quotients - $f \cdot g$, and $\frac{f}{g}$ (with $g(c) \neq 0$
+        \item Powers - $f^n$ with $n \in \mathbb{N}$
+        \item Roots $\sqrt[n]{f}$ provided it is definied on an interval containing $c$ and $n \in \mathbb{N}$ 
+    \end{itemize}}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem:} (Compositions of Continuous Functions):}\\
+    If $f$ is continuous at $c$ and $g$ is continuous at $f(c)$, then the composition $g \circ f$ is continuous at $c$.}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem:} (Limits of Continuous Functions):}\\
+    If $\lim_{x \to c} f(x) = b$ and $g$ is continuous at the point $b$;
+    \begin{equation}
+        \lim_{x \to c} g(f(x)) = g(b)
+    \end{equation}}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem:} (The Intermediate Value Theorem for  Continuous Functions):}\\
+    If $f$ is a continuous function on a closed interval $[a,b]$, and if $y_0$ is any value between $f(a)$ and $f(b)$, then $y_0 = f(c)$ for some $c$ in $[a,b]$.\\
+    \textcolor{White}{123}\\
+    Continuous functions over finite closed intervals have the IVT. Geometrically, the IVT says any horizontal line $y=f(x)$ at least once over the interval $[a,b]$. The proof depepends on the completness property of the real number system, which implies the real numbers have no holes or gaps.}
+\end{theorem}
+
+%-------------------------------------------------------------------------
+\chapter{Derivatives}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Tangent Line):}\\
+    The slope of the curve $y=f(x)$ at the point $P(x_0, f(x_0))$ is the number;
+    \begin{equation}
+        \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}
+    \end{equation}
+    provided the limit exists. The tangent line to the curve at $P$ is the line through $P$ with this slope.}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Derivative at a Point):}\\
+    The derivative of a function $f$ at point $x_0$, denoted $f'(x_0)$, is;
+    \begin{equation}
+        f'(x_0) = \lim_{h \to x_0} \frac{f(x_0 + h) - f(x_0)}{h} 
+    \end{equation}
+    provided this limit exists.}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Derivative of a Function):}\\
+    The derivative of the function $f(x)$ with respect to the variable $x$ is the function $f'$ thats value at $x$ is
+    \begin{equation}
+        f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+    \end{equation}
+    provided this limit exists.}
+\end{definition}
+
+\textcolor{White}{123}
+A function is differentiable on an open interval if it has a derivative at each point of the interval. It is differentiable on a closed interval $[a,b]$ if it is differentiable on the interior $(a,b)$ and if the limits;
+\begin{equation}
+    \lim_{h \to 0^+} = \frac{f(a + h) - f(a)}{h} \; \; \; \; \; \; and \; \; \; \; \; \; \lim_{h \to 0^+} = \frac{f(a + h) - f(a)}{h}\\
+\end{equation}
+
+A function will not have a derivative if it is;
+\begin{itemize}
+    \item A corner, where the one-sided derivatives differ
+    \item A cusp, where the slope approaches infinity from one side, and negative infinity from the other.
+    \item A vertical tangent line, where the slope approaches infinity from both sides, or negative infinity from both sides.
+    \item A discontinuity or a wild oscillation.
+\end{itemize}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem:} (Differentiability Implies Continuity):}\\
+    If $f$ has a derivative at $x = c$, then $f$ is continuous at $x = c$.}
+\end{theorem}
+
+\textcolor{White}{123}
+
+\begin{information}
+\textcolor{Cerulean}{
+    \begin{center}
+        \textbf{Differentiation Rules}\\
+    \end{center}}
+    \textcolor{Cerulean}{\textbf{Derivative of a Constant Function:}\\
+    If $f$ has the constant value $f(x) = c,$ then $f'(x) = 0$}\\
+
+    \textcolor{Cerulean}{\textbf{Power Rule:}\\
+    If $n$ is any reral number, then $\frac{d}{dx} x^n = nx^{n-1}$,\\
+    for all $x$ where the powers $x^n$ and $x^{n-1}$ are defined.}\\
+
+    \textcolor{Cerulean}{\textbf{Derivative Constant Multiple Rule:}\\
+    If $u$ is a differentiable function of $x$, and $c$ is a constant, then $\frac{d}{dx} cu = d \frac{du}{dx}$.}\\
+
+    \textcolor{Cerulean}{\textbf{Derivative Sum Rule:}\\
+    If $u$ and $v$ are differentiable functions of $x$, then their sum is differentiable at every point where $u$ and $v$ are both differentiable;
+    \begin{equation}
+        \frac{d}{dx}(u+v) = \frac{du}{dx} + \frac{dv}{dx}
+    \end{equation}}
+
+    \textcolor{Cerulean}{\textbf{Derivative Product Rule:}\\
+    If $u$ and $v$ are differentiable at $x$, then so is their product;
+    \begin{equation}
+        \frac{d}{dx} (uv) = u\frac{dv}{dx} + v\frac{du}{dx}
+    \end{equation}}
+
+    \textcolor{Cerulean}{\textbf{Derivative Quotient Rule:}\\
+    If $u$ and $v$ are differentiable at $x$ and if $v(x) \neq 0$, then the quotient is diferentiable at $x$;
+    \begin{equation}
+        \frac{d}{dx}\frac{u}{v} = \frac{v\frac{du}{dx} - u\frac{dv}{du}}{v^2}
+    \end{equation}}
+\end{information}
+
+\begin{information}
+\textcolor{Cerulean}{
+    \begin{center}
+        \textbf{Derivatives of Basic Trigonometric Functions}\\
+    \end{center}}
+    \textcolor{Cerulean}{
+    \begin{equation}
+        \frac{d}{dx} \sin{x} = \cos{x} \; \; \; \; \; \; \; \; \; \; \;\ \; \; \frac{d}{dx} \cos{x} = -\sin{x}
+    \end{equation}
+    \begin{equation}
+        \tan{x} = \frac{\sin{x}}{\cos{x}} \; \; \; \; \; \; \; \; \; \; \;\ \; \; \frac{d}{dx}\tan{x} = \sec^2{x}
+    \end{equation}
+    \begin{equation}
+        \cot{x} = \frac{\cos{x}}{\sin{x}} \; \; \; \; \; \; \; \; \; \; \;\ \; \; \frac{d}{dx}\cot{x} = \csc^2{x}
+    \end{equation}
+    \begin{equation}
+        \sec{x} = \frac{1}{\cos{x}} \; \; \; \; \; \; \; \; \; \; \;\ \; \; \frac{d}{dx}\sec{x} = \sec{x}\tan{x}
+    \end{equation}
+    \begin{equation}
+        \csc{x} = \frac{1}{\sin{x}} \; \; \; \; \; \; \; \; \; \; \;\ \; \; \frac{d}{dx}\csc{x} = -\csc{x}\cot{x}
+    \end{equation}}
+\end{information}
+    
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem:} (The Chain Rule):}\\
+    If $f(u)$ is differentiable at the point $u = g(x)$ and $g(x)$ is differentiable at $x$, then the composite function $(f \circ g)(x)$ is differentiable at $x$, and
+    \begin{equation}
+        (f \circ g)' (x) = f'(g(x)) g(x)
+    \end{equation}
+    In Leibniz's notation, if $y=f(u)$ and $u = g(x)$, then
+    \begin{equation}
+        \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}
+    \end{equation}}
+\end{theorem}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Linearisation):}\\
+    If $f$ is differentiable at $x = a$, then the approximating function
+    \begin{equation}
+        L(x) = f(a) + f'(a)(x-a)
+    \end{equation}
+    is the linearisation of $f$ at $a$.}
+\end{definition}
+    
+%-------------------------------------------------------------------------
+\chapter{Applications of Derivatives}
+%-------------------------------------------------------------------------
+\section{Extrema}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Absolute Extrema):}\\
+     Let $f$ be a function with domain $D$.\\
+     $f$ has an absolute maximum at a point $C \in D$ if
+     \begin{equation}
+         f(x) \leq f(c)
+     \end{equation}
+     for all $x \in D$.\\
+     \textcolor{White}{1}\\
+     $f$ has an absolute minimum at a point $c \in D$ if
+     \begin{equation}
+         f(x) \geq f(c)
+     \end{equation}
+     for all $x \in D$.}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Local Extrema):}\\
+    Let $f$ be a function defined on domain $D$.\\
+    $f$ has a local maximum at a point $c \in D$ if there exists an open interval $(a,b) \in D$ such that $c \in (a,b)$ and;
+    \begin{equation}
+        f(x) \leq f(c)
+    \end{equation}
+    for all $x \in (a,b)$.\\
+    \textcolor{White}{1}\\
+    $f$ has a local minimum at a point $c \in D$ if there exists an open interval $(a,b) \in D$ such that $c \in (a,b)$ and;
+    \begin{equation}
+        f(x) \qeq f(c)
+    \end{equation}
+    for all $x \in (a,b)$.}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Extreme Value Theorem):}\\
+    If $f$ is a continuous function defined on a closed interval $[a,b]$, then $f$ attains both an absolute maxima and an absolute minima, that is, there exists points $x_{max}, x_{min}, \in [a,b]$ such that;
+    \begin{equation}
+        f(x_{max}) \leq f(x) \leq f(x_{min})
+    \end{equation}
+    for all $x \in [a,b]$}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Interior and Boundary Points):}\\
+    Let $I = [a,b]$ be a closed interval. The points $a,b$ are called boundary points of $I$. All other points $x$ with $a < x < b$ are called interior points of $I$.}
+\end{definition}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (First Derivative Theorem for Local Extrema):}\\
+    If a differentiable function $f$ has a local minimum or maximum at an interior point $c$ of its domain, then $f'(c) = D$.}
+\end{theorem}
+
+\textcolor{White}{123}\\
+An interior point $x$ is a critical point if $f'(x) = 0$ or $f'(x)$ is undefined.\\
+Local extrema of a function can only occur at critical points or boundary points of its domain.
+\textcolor{White}{123}\\
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Rolle's Theorem):}\\
+    Let $f$ be a continuous function defined on the interval $[a,b]$, and let $f$ be differentiable on $(a,b)$. Then, there exists a point $c \in (a,b)$ such that $f'(c) = 0$.}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Mean Value Theorem):}\\
+    Suppose $f$ is continuous on the closed interval $[a,b]$ and differentiable on $(a,b)$. Then, there exists a point $c \in (a,b)$ such that;
+    \begin{equation}
+        f'(c) = \frac{f(b)-f(a)}{b-a}
+    \end{equation}}
+\end{theorem}
+
+%-------------------------------------------------------------------------
+\section{Increasing and Decreasing Functions}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Increasing and Decreasing Functions):}\\
+    Suppose $f$ is continuous on $[a,b]$ and differentible on $(a,b)$.\\
+    \begin{itemize}
+        \item If $f'(x) > 0$ for each $x \in (a,b)$, then $f$ is an increasing function on $[a,b]$.
+        \item If $f'(x) < 0$ for each $x \in (a,b)$, then $f$ is an decreasing function on $[a,b]$.
+    \end{itemize}}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (First Derivative Test for Local Extremes):}\\
+    Let $f$ be a function that is continuous on $[a,b]$ and differentiable on $(a,c) \cup (c,b)$, and suppose $C$ is a critical point of the function, then differentiate either side of this point.
+    \begin{itemize}
+        \item If $f'$ changes sign from positive to negative at $c$, then $f$ has a local maximum at $c$,
+        \item If $f'$ changes sign from negative to positive at $c$, then $f$ has a local minimum at $c$.
+        \item If $f'$ dies not change sign at $c$, then $f$ has no local extrema at $c$.
+    \end{itemize}}
+\end{theorem}
+
+%-------------------------------------------------------------------------
+\section{Concavity}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Concavity):}\\
+    Let $f$ be a differentable function and $I$ be an open interval contained in the domain of $f$. The graph of $f$ is said to be;
+    \begin{itemize}
+        \item Concave up on $I$ if $f$ is increasing on $I$.
+        \item Concave down on $I$ if $f$ is decreasing on $I$.
+    \end{itemize}}
+\end{definition}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Second Derivative Test for Concavity):}\\
+    Let $f$ be twice differentiable on open interval $I$;
+    \begin{itemize}
+        \item If $f'' > 0$ on $I$, the graph is concave up.
+        \item If $f'' < 0$ on $I$, the graph is concave down.
+    \end{itemize}}
+\end{theorem}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Points of Inflection):}\\
+    A point $(c, f(c))$ where the graph of a function $f$ has a tangent, and where the concavity changes is said to be a point of inflection.}
+\end{definition}
+
+\begin{information}
+\textcolor{Cerulean}{
+    \begin{center}
+        \textbf{Sketching Curves}\\
+    \end{center}
+    \begin{enumerate}
+        \item Identify domain and any symmetries
+        \item Find $f'$ and $f''$
+        \item Find the critical points
+        \item Find the intervals of monotonicity
+        \item Find the intervals of concavity and points of inflection
+        \item Identify any asymptotes.
+    \end{enumerate}}
+\end{information}
+
+%-------------------------------------------------------------------------
+\section{L'Hôpital's Rule}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (L'Hôpital's Rule):}\\
+    Let $f$ and $g$ be differentiable functions, and let $a$ be a point in the domain of both $f$ and $g$.\\
+    If $f(a) = 0$, $g(a) = 0$, and $g'(a) \neq 0$,\\
+    then the limit of $\frac{f}{g}$ as $x$ tends to $a$ exists, and is given by;
+    \begin{equation}
+    \lim_{x \longrightarrow a} \frac{f(x)}{g(x)} = \frac{f'(a)}{g'(a)}
+    \end{equation}}
+\end{theorem}
+
+
+
+
+
+%-------------------------------------------------------------------------
+\chapter{Integration}
+%-------------------------------------------------------------------------
+\section{Riemann Sums}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Riemann Sums):}\\
+    Let $f$ be a continuous function defined on domain $D$. If $[a,b] \subset D$, then for any $n \in \mathbb{N}$, a \textbf{Riemann Sum} of $f$ over $[a,b]$ is given by;
+    \begin{equation}
+        S_n = \sum_{k=1}^n f(a + k \triangle x) \triangle x
+    \end{equation}
+    where $\triangle x = \frac{b-a}{n}$}
+\end{definition}
+As $n$ gets larger, the number of rectangles increases, and each rectangle becomes thinner, meaning the larger the value of $n$, the more closely the Reimann Sum approximates the area.
+
+%-------------------------------------------------------------------------
+\section{Definite Integrals}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Definite Integrals):}\\
+    Let $f$ be a continuous function on domain $D$, with $[a,b] \subset D$. The definite integral of $f$ over $[a,b]$ is given by $\lim_{n \longrightarrow \infty} S_n$, provided the limit exists. If the limit does exist, we denote the definite integral by;
+    \begin{equation}
+        \int_a^b f(x) \,dx\
+    \end{equation}}
+\end{definition}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Integrability of Continuous Function):}\\
+    If $f$ is a continuous function on the interval $[a,b]$, then the definite integral exists.}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Min-Max Inequality for Definite Integrals):}\\
+    $Let m, M \in \mathbb{R}$. If $m \leq f(x) \leq M$ for all $x \in (a,b)$, then;
+    \begin{equation}
+        m(b-a) \leq \int_a^b f(x) \,dx\ \leq M(b-a)
+    \end{equation}}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Domination Inequality):}\\
+    If $f(x) \leq g(x)$ for $x \in [a,b]$, then;
+    \begin{equation}
+        \int_a^b f(x) \,dx\ \leq \int_a^b g(x) \,dx\
+    \end{equation}}
+\end{theorem}
+
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Fundamental Theorem of Calculus - Part I):}\\
+    Let $f$ be a continuous function on $[a,b]$. Then
+    \begin{equation}
+        F(x) = \int_a^x f(t) \,dt\
+    \end{equation}
+    defines a function which is continuous on $[a,b]$, differentiable on $(a,b)$, and which satisfies $F'(X) = f(x)$.}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Corollary} (of the Mean Value Theorem):}\\
+    If $f'(x) = 0$ at each point $x$ of an open interval $(a,b)$, then $f'(x) = 0$ at each point $x$ of an open interval $(a,b)$, then $f(x) = c$ for all $x \in (a,b)$, where $c$ is a constant.}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{(a further) \textbf{Corollary} (of the Mean Value Theorem):}\\
+    If $f'(x) = g'(x)$ at each point $x$ of an open interval $(a,b)$, then there is a constant $c$ such that
+    \begin{equation}
+        f(x) = g(x) + c
+    \end{equation}
+    for all $x \in (a,b)$.}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Fundamental Theorem of Calculus - Part II):}\\
+    If $f$ is a continuous function on $[a,b]$, and $F$ is any antiderivative of $f$, then:
+    \begin{equation}
+        \int_a^b f(x) \,dx\ = F(b)-F(a)
+    \end{equation}
+    \begin{equation}
+        F(b) - F(a) = [F(x)]_a^b
+    \end{equation}}
+\end{theorem}
+
+%-------------------------------------------------------------------------
+\section{Indefinite Integrals}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Indefinite Integrals):}\\
+    Let $f$ be a continuous function defined on an interval and let $F$ be an antiderivative of $f$. We denote the general antiderivative of $f$ by;
+    \begin{equation}
+        \int f(x) \,dx\ = F(x) + C
+    \end{equation}}
+\end{definition}
+
+%-------------------------------------------------------------------------
+\section{Integration by Substitution}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Substitution Rule for Indefinite Integrals):}\\
+    If $u = g(x)$ is a differentiable function with a range of an interval $I$, and if $f$ is a continuous function on $I$, then;
+    \begin{equation}
+        \int f(g(x))g'(x) \,dx\ = \int f(u) \,du\
+    \end{equation}}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Substitution Rule for Definite Integrals):}\\
+    If $g'$ is continuous on the interval $[a,b]$ and $f$ is continuous on the range of $g$, then
+    \begin{equation}
+        \int_a^b f(g(x))g'(x) \,dx\ = \int_{g(a)}^{g(b)} f(u) \,du\
+    \end{equation}}
+\end{theorem}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Average Value of a Function):}\\
+    Given a continuous function on $[a,b]$ its average value on $[a,b]$ is;
+    \begin{equation}
+        \frac{1}{b-a} \int_a^b f(x) \,dx\
+    \end{equation}}
+\end{definition}
+
+%-------------------------------------------------------------------------
+\chapter{Transcendental Functions}
+%-------------------------------------------------------------------------
+\section{The Natural Logarithm}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (The Natural Logarithm and Exponentials):}\\
+    \begin{equation}
+        \ln{x} = \int_1^x \frac{1}{t} \,dt\
+    \end{equation}
+    \rightline{for all $x > 0$.}\\
+    \textbf{Properties:}
+    \begin{itemize}
+        \item Domain $D = (0, \infty)$
+        \item $\ln{1} = 0$
+        \item $\ln$ is differentiable; $\frac{d}{dx} \ln{x} = \frac{1}{x}$
+        \item $\ln$ is an increasing function.
+    \end{itemize}}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (The Exponential Function):}\\
+    $\ln : (0, \infty) \longrightarrow \mathbb{R}$ is strictly increasing, and is thus one-to-one (or, injective). So it is invertible. Since the range of $\ln$ is $\mathbb{R}$, the inverse is defined on $\mathbb{R}$, and denoted;
+    \begin{equation}
+        \exp : \mathbb{R} \longrightarrow (0, \infty)
+    \end{equation}
+    and is referred to as the exponential function.}
+\end{definition}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Derivative of Exponential Function):}\\
+    For any $x \in \mathbb{R}$;
+    \begin{equation}
+        \frac{d}{dx} \exp{(x)} = \exp{(x)}
+    \end{equation}}
+\end{theorem}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Exponential Function Operations):}\\
+    Suppose $a \in \mathbb{R}$ and $b \in \mathbb{R}$.
+    \begin{equation}
+        \exp{(a + b)} = \exp{(a)} \cdot \exp{(b)}
+    \end{equation}
+    \begin{equation}
+        \exp{(a - b)} = \frac{\exp{(a)}}{\exp{(b)}}
+    \end{equation}
+    \begin{equation}
+        \exp{(\frac{r}{s}a)} = \exp{(a)}^{\frac{r}{s}}
+    \end{equation}
+    \rightline{for any integers $r,s$, with $s \neq 0$.}}
+\end{theorem}
+
+%-------------------------------------------------------------------------
+\section{Hyperbolic Functions}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Hyperbolic Sine):}\\
+    For any $x \in \mathbb{R}$, the hyperbolic sine is defined by;
+    \begin{equation}
+        \sinh{(x)} = \frac{e^x - e^{-x}}{2}
+    \end{equation}}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Hyperbolic Cosine):}\\
+    For any $x \in \mathbb{R}$, the hyperbolic cosine is defined by;
+    \begin{equation}
+        \cosh{(x)} = \frac{e^x + e^{-x}}{2}
+    \end{equation}}
+\end{definition}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Hyperbolic Tangent):}\\
+    For any $x \in \mathbb{R}$, the hyperbolic tangent is defined by;
+    \begin{equation}
+    \tanh{(x)} = \frac{\sinh{(x)}}{\cosh{(x)}} = \frac{e^x - e^{-ex}}{e^x+e^{-x}}
+    \end{equation}}
+\end{definition}
+
+%-------------------------------------------------------------------------
+\chapter{Techniques of Integration}
+%-------------------------------------------------------------------------
+\section{Integration by Parts}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Integration by Parts): }\\
+    Let $f,g$ be differentiable functions on some domain $D$. Then, for all $x \in D$;
+    \begin{equation}
+        \int f(x)g'(x) \,dx\ = f(x)g(x) - \int f'(x) g(x) \,dx\
+    \end{equation}}
+\end{theorem}
+
+%-------------------------------------------------------------------------
+\section{Improper Integrals}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Type 1 Improper Integrals):}\\
+    Let $f$ be a continuous function on $[a,\infty)$, then;
+    \begin{equation}
+        \int_a^\infty f(x) \,dx\ = \lim_{b \longrightarrow \infty} \int_a^b f(x) \,dx\
+    \end{equation}
+    Let $f$ be a continuous function on $[-\infty, b)$, then;
+    \begin{equation}
+        \int_{-\infty}^b f(x) \,dx\ = \lim_{a \longrightarrow -\infty} \int_a^b f(x) \,dx\
+    \end{equation}
+    Let $f$ be a continuous function on $\mathbb{R}$, then;
+    \begin{equation}
+        \int_{-\infty}^\infty f(x) \,dx\ = \int_{-\infty}^c f(x) \,dx\ + \int_c^\infty f(x) \,dx\
+    \end{equation}
+    \rightline{for any $c \in \mathbb{R}$.}\\
+    In each case, if the limit exists we say the improper integral converges, otherwise it diverges.}
+    
+\end{definition}
+
+\begin{theorem}
+    \textcolor{Violet}{\textit{\textbf{Theorem} (Comparison Test):}\\
+    Let $f$ and $g$ be continuous on $[a,\infty)$ with $0 \leq f(x) \leq g(x)$ for all $x \in [a,\infty)$. If $\int_{-\infty}^\infty g(x) \,dx\ $ converges, then $\int_{-\infty}^\infty f(x) \,dx\ $ also converges, and we have;
+    \begin{equation}
+        0 \leq \int_{-\infty}^\infty f(x) \,dx\ \leq \int_{-\infty}^\infty g(x) \,dx\
+    \end{equation}}
+\end{theorem}
+
+\begin{definition}
+    \textcolor{OrangeRed}{\textit{\textbf{Definition} (Type 2 Improper Integrals):}\\
+    Let $f$ be a continuous function on $(a,b]$ with a vertical asymptote at $a$. Then;
+    \begin{equation}
+        \int_a^b f(x) \,dx\ = \lim_{c \longrightarrow a^+} \int_c^b f(x) \,dx\
+    \end{equation}
+    Let $f$ be a continuous function on $[a,b)$ with a vertical asymptote at $b$. Then;
+    \begin{equation}
+        \int_a^b f(x) \,dx\ = \lim_{c \longrightarrow b^-} \int_a^c f(x) \,dx\
+    \end{equation}
+    Let $f$ be a continuous function on $[a,c) \cup (c,b]$ with a natural asymptote at $c$. Then;
+    \begin{equation}
+        \int_a^b f(x) \,dx\ = \int_a^c f(x) \,dx\ + \int_c^b f(x) \,dx\
+    \end{equation}
+    In each case, if the limit exists we say the improper integral converges, otherwise it diverges.}
+\end{definition}
+
+
+
+
+
+
+
+\end{document}
