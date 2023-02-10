@@ -1,0 +1,1180 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\newgeometry{left=3cm,bottom=2cm, right=3cm, top=2cm}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{charter}
+
+\newenvironment{cframed}[1][BlueViolet]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+
+
+\newenvironment{cframed2}[1][PineGreen]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+
+\newenvironment{cframedp}[1][Black]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+
+\newenvironment{cframedprop}[1][Maroon]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+%-------------------------------------------------------------------------
+
+
+\title{\huge{\textbf{\textit{Introduction to Probability}}}\\
+\Large\textbf{\textit{Complete Summarised Notes}}\\
+MTH4107 - Year 1 Semester 1}
+
+\author{Adam Curry}
+\date{September - December 2022}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+%-------------------------------------------------------------------------
+\chapter{Sample Spaces and Events}
+%-------------------------------------------------------------------------
+\section{Framework}
+
+\begin{cframed}\textcolor{BlueViolet}{
+\textit{\textbf{Definition 1.1:}}\\
+The sample space is the set of all possible outcomes for the experiment, denoted by S.}
+\end{cframed}
+
+\textcolor{White}{1}
+
+\begin{cframed}\textcolor{BlueViolet}{
+\textit{\textbf{Definition 1.2:}}\\
+An event is a subset of the sample space. The event occurs if the actual outcome is an element of this subset.}
+\end{cframed}
+
+\textcolor{White}{1}
+
+\begin{cframed}\textcolor{BlueViolet}{
+\textit{\textbf{Definition 1.3:}}\\
+An event E is a simple event (or elementary event) if it consists of a single element of the sample space S.}
+\end{cframed}
+%-------------------------------------------------------------------------
+\section{Basic Set Theory}
+
+Informally, a set is an unordered collection of well-defined distinct objects. For instance, \{1,2,3\} is a set. The order of a set does not matter, and two sets A and B are equal if they contain the exact same elements.\\
+
+A set can be specified in various ways:
+\begin{itemize}
+    \item By listing all the objects in it between braces and separated by commas.
+    \item By listing enough elements to determine a pattern (usually used for infinite sets).
+    \item By giving a rule, such as \{x:x is an even integer\}. \\
+\end{itemize}
+
+If A is a set, $x \in A$ denotes that $x$ is an element of A.\\
+If $x$ is not an element of A, then $x \notin A$ is written.\\
+For a finite set, the cardinality is the number of elements.\\
+
+\begin{cframedp}
+\begin{center}
+$A \cup B$ is the set of elements in A or B (or both):\\
+$A \cup B = \{x:x \in A\: or\: x \in B \}$\\
+
+\textcolor{White}{1}
+
+$A \cap B$ is the set of elements in both A and B:\\
+$A \cap B = \{x:x \in A\: and\: x \in B\}$\\
+
+\textcolor{White}{1}
+
+$A\: \backslash \: B$ is the set of elements in A but not in B:\\
+$A\: \backslash \: B = \{x:x \in A \: and \: x \notin B \} $\\
+
+\textcolor{White}{1}
+
+$A \triangle B$ (the symmetric difference of A and B) is the set of elements in either A or B but not both:\\
+$A \triangle B = (A\: \backslash \: B) \cup (B\: \backslash \: A)$\\
+\end{center}
+\end{cframedp}
+
+If all the elements of A are contained in the set B, A is a subset of B, denoted $A \subseteq B$.\\
+
+If all sets are subsets of some fixed set $S$, then $A^c$ (the complement of A) is the set of all elements of S which are not elements of A:\\
+$A^c = S\: \backslash \: A$\\
+
+We say two sets are disjoint (or mutually exclusive) if they have no element in common, i.e. $A \cap B = \{ \}$. The empty set is often denoted by $\emptyset.$\\
+
+\begin{cframedp}
+
+\centering\textbf{\textit{De Morgan's Laws:}}
+\begin{equation}
+    (A \cup B)^c = A^c \cap B^c
+\end{equation}
+\begin{equation}
+    (A \cap B)^c = A^c \cup B^c 
+\end{equation}
+\end{cframedp}
+
+%-------------------------------------------------------------------------
+\chapter{Properties of Probabilities}
+%-------------------------------------------------------------------------
+\section{Kolmogorov's Axioms}
+
+\begin{cframed}
+\textcolor{BlueViolet}{\textit{\textbf{Definition 2.1} (Kolmogorov's Axioms for Probability)}}\\
+\textcolor{BlueViolet}{Probability is a function $\mathbb{P}$ which assigns to each event A a real number $\mathbb{P}(A)$ such that:}\\
+\textcolor{BlueViolet}{a) For every event $A$ we have $\mathbb{P}(A) \ge 0$.}\\
+\textcolor{BlueViolet}{b) $\mathbb{P}(S) = 1$}\\
+\textcolor{BlueViolet}{c) If $A_1,A_2,...,A_n$ are $n$ pairwise disjoint events $(A_k \cap A_l = \emptyset$ for all $k \neq l)$, then}\\
+\textcolor{white}{c) }\textcolor{BlueViolet}{$\mathbb{P}(A_1 \cup A_2 \cup ... \cup A_n) = \mathbb{P}(A_1) + \mathbb{P}(A_2) + ... + \mathbb{P}(A_n) = \sum_{k=1}^{n} \mathbb{P}(A_k)$}\\
+\end{cframed}
+
+%-------------------------------------------------------------------------
+\section{Deductions from the Axioms}
+
+\begin{cframedprop}
+
+\textcolor{Maroon}{\textit{\textbf{Proposition 2.2:}}}\\
+\textcolor{Maroon}{If A is an event then;
+\begin{equation}
+    \mathbb{P}(A^c) = 1 - \mathbb{P}(A)
+\end{equation}}
+\end{cframedprop}
+
+\textcolor{White}{123}
+
+\begin{cframedp}
+
+\textit{\textbf{Proof:}}\\
+Let $A$ be any event, and let $A_1 = A$ and $A_2=A^c$.\\
+By definition of the complement, $A_1 \cap A_2 = \emptyset$ \\
+
+Therefore, Definition 2.1(c) can be applied with $n = 2$;
+\begin{equation}
+    \mathbb{P}(A_1 \cup A_2) = \mathbb{P}(A_1) + \mathbb{P}(A_2) = \mathbb{P}(A) + \mathbb{P}(A^c)
+\end{equation}
+
+Again, by definition of the complement, $A_1 \cup A_2 = S$\\
+So using Definition 2.1(b);
+\begin{equation}
+    1 = \mathbb{P}(S) = \mathbb{P}(A_1 \cup A_2)
+\end{equation}
+
+Hence, combining (2.1(c)) and (2.1(b)) we have
+\begin{equation}
+    1 = \mathbb{P}(A) + \mathbb{P}(A^c)
+\end{equation}
+\qed
+\end{cframedp}
+
+\begin{cframedprop}
+
+\textcolor{Maroon}{\textbf{\textit{Corollary 2.3:}}}\\
+\textcolor{Maroon}{
+\begin{equation}
+    \mathbb{P}(\emptyset) = 0
+\end{equation}}
+\end{cframedprop}
+
+\textcolor{White}{1}
+
+\begin{cframedp}
+
+\textit{\textbf{Proof:}}\\
+By the definition of the complement, $S^c = S \backslash S = \emptyset$\\
+Therefore, by Proposition 2.2, $\mathbb{P}(\emptyset) = \mathbb{P}(S^c) = 1 - \mathbb{P}(S)$\\
+Then, by Definition 2.1(b), $ \mathbb{P}(\emptyset) = 1 - 1 = 0 $ 
+\qed
+\end{cframedp}
+
+\textcolor{White}{1}
+
+\begin{cframedprop}
+\textcolor{Maroon}{\textbf{\textit{Corollary 2.4:}}}\\
+\textcolor{Maroon}{If $A$ is an event;
+\begin{equation}
+    \mathbb{P}(A) \leq  1
+\end{equation}}
+\end{cframedprop}
+
+
+\begin{cframedp}
+\textit{\textbf{Proof:}}\\
+By Proposition 2.2, $\mathbb{P}(A^c) = 1 - \mathbb{P}(A) $\\
+$A^c$ is an event, so by Definition 2.1(a) it's probability must be $\geq 0$,\\
+$0 \leq \mathbb{P}(A^c) = 1 - \mathbb{P}(A)$\\
+
+Hence, $\mathbb{P}(A) \leq 1$
+\qed
+\end{cframedp}
+
+\textcolor{White}{123}
+
+\begin{cframedprop}
+\textcolor{Maroon}{\textit{\textbf{Proposition 2.5:}}}\\
+\textcolor{Maroon}{If A and B are events and $A \subseteq B$ then;
+\begin{equation}
+    \mathbb{P}(A) \leq \mathbb{P}(B)
+\end{equation}}
+\end{cframedprop}
+
+\textcolor{White}{123}
+
+\begin{cframedp}
+\textit{\textbf{Proof:}}\\
+Let $A_1 = A$ and $A_2 = B \backslash A$ with $A \subseteq B.$\\
+Then $A_1 \cap A_2 = \emptyset $ and $A_1 \cup A_2 = B$\\
+
+So by Definition 2.1(c), with $n = 2$;
+\begin{equation}
+    \mathbb{P}(B) = \mathbb{P}(A_1 \cup A_2) = \mathbb{P}(A_1) + \mathbb{P}(A_2) = \mathbb{P}(A) + \mathbb{P}(B \backslash A)
+\end{equation}
+
+$B \backslash A$ is also an event, so by Definition 2.1(a),
+\begin{equation}
+    \mathbb{P}(B) - \mathbb{P}(A) = \mathbb{P}(B \backslash A) \geq 0
+\end{equation}
+\begin{equation}
+    \mathbb{P}(B) \geq \mathbb{P}(A)
+\end{equation}
+\qed
+\end{cframedp}
+
+\textcolor{White}{123}
+
+\begin{cframedprop}
+\textcolor{Maroon}{\textit{\textbf{Proposition 2.6:}}}\\
+\textcolor{Maroon}{If $A = \{ a_1, a_2,...,a_n \}$ is a finite event;
+\begin{equation}
+    \mathbb{P}(A) = \mathbb{P}( \{a_1 \}) + \mathbb{P}( \{a_2 \}) + ... + \mathbb{P}( \{a_n \}) = \sum_{i=1}^{n} \mathbb{P}( \{ a_i \} )
+\end{equation}}
+\end{cframedprop}
+
+\textcolor{White}{123}
+
+\begin{cframedp}
+\textit{\textbf{Proof:}}\\
+Let $A_i = \{a_i \}, I = 1,...,n.$\\
+These events are pairwise disjoint, and $A_1 \cup A_2 \cup ... \cup A_n = A$, therefore by Definition 2.1(c);\\
+\begin{equation}
+    \mathbb{P}(A) = \mathbb{P}(A_1 \cup A_2 \cup ... \cup A_n)
+\end{equation}
+\begin{equation}
+    \mathbb{P}(A) = \mathbb{P}(A_1) + \mathbb{P}(A_2) + ... + \mathbb{P}(A_n)
+\end{equation}
+\begin{equation}
+    \mathbb{P}(A) = \mathbb{P}( \{a_1 \} ) + \mathbb{P}( \{a_2 \} ) + ... + \mathbb{P}( \{a_n \} )
+\end{equation}
+\qed
+\end{cframedp}
+
+%-------------------------------------------------------------------------
+\section{Inclusion-Exclusion Formulae}
+
+\begin{cframedprop}
+\textcolor{Maroon}{\textit{\textbf{Proposition 2.7} (Inclusion-Exclusion for 2 Events):}}\\
+\textcolor{Maroon}{For any two events A and B,
+\begin{equation}\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)
+\end{equation}}
+\end{cframedprop}
+
+\textcolor{White}{123}
+
+\begin{cframedp}
+\textit{\textbf{Proof:}}\\
+Let $E_1 = A \backslash B, E_2 = A \cap B, E_3 = B \backslash A.$\\
+The events are pairwise disjoint, and $E_1 \cup E_2 \cup E_3 = A \cup B$\\
+
+By Definition 2.1(c) with $n=3$,
+\begin{equation}
+    \mathbb{P}(A \cup B) = \mathbb{P}(E_1) + \mathbb{P}(E_2) + \mathbb{P}(E_3)
+\end{equation}
+
+Furthermore, $E_1 \cup E_2 = A$ and $E_2 \cup E_3 = B$. Therefore, by Definition 2.1(c) with n = 2,\\
+\begin{equation}
+    \mathbb{P}(A) = \mathbb{P}(E_1) + \mathbb{P}(E_2)
+\end{equation}
+\begin{equation}
+    \mathbb{P}(B) = \mathbb{P}(E_2) + \mathbb{P}(E_3)
+\end{equation}
+
+Since $\mathbb{P}(A \cap B = \mathbb{P}(E_2)$,
+\begin{equation}
+    \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B) = \mathbb{P}(E_1) + \mathbb{P}(E_2) + \mathbb{P}(E_2) + \mathbb{P}(E_3) - \mathbb{P}(E_2)
+\end{equation}
+
+\begin{equation}
+   \textcolor{White}{1111111} = \mathbb{P}(E_1) + \mathbb{P}(E_2) + \mathbb{P}(E_3)
+\end{equation}
+\begin{equation}
+    = \mathbb{P}(A \cup B) \textcolor{White}{1111}
+\end{equation}
+\qed
+\end{cframedp}
+
+\begin{cframedprop}
+\textcolor{Maroon}{\textit{\textbf{Proposition 2.8} (Inclusion-Exclusion for 3 Events):}}\\
+\textcolor{Maroon}{For any three events A and B,
+\begin{equation}
+    \mathbb{P}(A \cup B \cup C) = \mathbb{P}(A) + \mathbb{P}(B) + \mathbb{P}(C) - \mathbb{P}(A \cap B) - \mathbb{P}(A \cap C) - \mathbb{P}(B \cap C) + \mathbb{P}(A \cap B \cap C)
+\end{equation}}
+\end{cframedprop}
+
+\textcolor{White}{123}
+
+\begin{cframedp}
+\textit{\textbf{Proof:}}\\
+Let $D = A \cup B$ so that $A \cup B \cup C = C \cup D$. Then,\\
+
+$\mathbb{P}(A \cup B \cup C) = \mathbb{P}(C \cup D)$
+$= \mathbb{P}(C) + \mathbb{P}(D) - \mathbb{P}(C \cap D)$ (by Proposition 2.7)\\
+\textcolor{White}{11111111111}$= \mathbb{P}(C) + \mathbb{P}(A \cup B) - \mathbb{P}(C \cap D)$\\
+\textcolor{White}{11111111111}$= \mathbb{P}(C) + \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B) - \mathbb{P}(C \cap D)$ (by Proposition 2.7) (Eq. A)\\
+
+$C \cap D = C \cap (A \cup B) = (C \cap A) \cup (C \cap B)$ so,\\
+
+$\mathbb{P}(C \cap D) = \mathbb{P}((C \cap A) \cup (C \cap B))$\\
+\textcolor{White}{11111111}$= \mathbb{P}(C \cap A) + \mathbb{P}(C \cap B) - \mathbb{P}((C \cap A) \cap B))$ (by Proposition 2.7)\\
+\textcolor{White}{11111111}$= \mathbb{P}(C \cap A) + \mathbb{P}(C \cap B) - \mathbb{P}(A \cap B \cap C)$ (Eq. B)\\
+
+Substituting (Eq. B) into (Eq. A) gives\\
+$\mathbb{P}(A \cup B \cup C) = \mathbb{P}(C) + \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B) - \mathbb{P}(C \cap A) - \mathbb{P}(C \cap B) + \mathbb{P}(A \cap B \cap C)$\\
+\qed
+\end{cframedp}
+%-------------------------------------------------------------------------
+\section{Equally-Likely Outcomes}
+
+In some situations, it is reasonable to say that the probability of an event A is the ratio of the number of outcomes in A to the total number of outcomes in S;\\
+\begin{equation*}
+\mathbb{P}(A) = \frac{|A|}{|S|}\\
+\end{equation*}
+
+However this special case and cannot be assumed without justification, for example it would not apply to a biased die. 
+
+%-------------------------------------------------------------------------
+\chapter{Sampling}
+%-------------------------------------------------------------------------
+\section{Basics for Sampling}
+
+This chapter will focus on the special case where all elements of the sampling space are equally likely. In this situation, calculating the probability essentially boils down to counting the number of ways of making some selection. Specifically, we are often interested in finding how many ways there are of choosing \textit{r} things from a collection of \textit{n} things. This is called \textbf{sampling from an \textit{n}-element set.}
+
+\subsection{Basic Principle of Counting}
+If there are \textit{m} possible outcomes of experiment one and \textit{n} possible outcomes of experiment two, then there are $m \cdot n $ outcomes of the two experiments together.\\
+
+\subsection{Sets \& Tuples}
+A set is an unordered collection of n distinct objects.\\
+In contrast, an n-tuple is an ordered collection of n objects which are not necessarily distinct.\\
+
+A 2-tuple is a 'pair' - for example (1,2), and a 3-tuple is a 'triple' - for example (1,2,1).
+
+%-------------------------------------------------------------------------
+\section{Ordered Sampling with Replacement}
+
+Making an ordered selection of \textit{r} things from a set $U = \{u_1,u_2,...,u_n \} $ with replacement, gives a sample space of the set of all \textit{r}-tuples consisting of elements of U;
+\begin{equation}
+    S = \{(s_1,s_2,...,s_r) : s_i \in U \}
+\end{equation}
+
+If $|U| = n$ then there are \textit{n} choices for $u_1$; for each of these, there are \textit{n} choices for $u_2$, and so on. Therefore,
+\begin{equation}
+    |S| = |U|^r = n^r
+\end{equation}
+To determine the probability of a given event, in the framework of equally-likely events, the cardinality of that event must be calculated, which can be done straightforwardly by applying the basic principle of counting.
+
+%-------------------------------------------------------------------------
+\section{Ordered Sampling without Replacement}
+
+If an ordered selection of \textit{r} things from a set $U = \{ u_1,u_2,...,u_n \}$ is made without replacement, then the sample space is the set of all ordered \textit{r}-tuples of distinct elements of \textit{U};
+\begin{equation}
+    S = \{ (s_1,s_2,...s_r) : s_i \in U \:with\: s_i \neq s_j \: for\: all\: i \neq j \}
+\end{equation}
+
+To find the cardinality of \textit{S}, notice that if $|U| = n$ there are \textit{n} choices for $s_1$; and then $n - 1$ choices for $s_2$, and then $n - 2$ choices for $s_3$, and so on. Therefore,
+\begin{equation}
+    |S| = \frac{n!}{(n-r)!}
+\end{equation}
+
+%-------------------------------------------------------------------------
+\section{Unordered Sampling without Replacement}
+
+If an unordered selection of \textit{r} things is made from a set $U = \{ u_1, u_2,...,u_n \}$ without replacement then a subset of U of size r is obtained, with, by definition, distinct elements.\\
+
+The corresponding sample space is the set of all subsets of \textit{r} elements of \textit{U}:
+\begin{equation}
+    S = \{ A \subseteq U : |A| = r \}
+\end{equation}
+
+An \textit{ordered} sample is obtained by taking an element of this sample space \textit{S} and putting its elements in order. Each element of the sample space can be ordered in $r!$ ways and so, if $|U| = n$, then
+\begin{equation}
+|S| = \frac{n!}{(n-r)! r!}
+\end{equation}
+
+\subsection{The Binomial Coefficient}
+The below notation is typically used instead of that in (3.6);
+\begin{equation}
+    \binom{n}{r} = \frac{n!}{(n-r)! r!}
+\end{equation}
+$\binom{n}{r}$ is read as 'n choose r', and is called a binomial coefficient.\\
+By convention $\binom{n}{r} = 0$ when $r > n$, since more than \textit{r} things cannot be chosen from \textit{n} things without replacement.
+
+%-------------------------------------------------------------------------
+\section{Sampling in Practice}
+
+\begin{cframed2}
+\textcolor{PineGreen}{\textit{\textbf{Theorem 3.1:}}}\\
+\textcolor{PineGreen}{The number of ways of selecting (sampling) \textit{r} objects from an \textit{n}-element set is:}\\
+
+\textcolor{PineGreen}{a) Ordered with replacement: $n^r$}\\
+
+\textcolor{PineGreen}{b) Ordered without replacement: $ \frac{n!}{(n-r)!} $}\\
+
+\textcolor{PineGreen}{c) Unordered without replacement: $\binom{n}{r}$}
+\end{cframed2}
+
+%-------------------------------------------------------------------------
+\chapter{Conditional Probability}
+%-------------------------------------------------------------------------
+\section{Introducing Extra Information}
+
+Additional information (a condition) may change the probability ascribed to an event.\\
+
+\begin{cframed}
+\textcolor{BlueViolet}{\textit{\textbf{Definition 4.1:}}}\\
+\textcolor{BlueViolet}{If $E_1$ and $E_2$ are events and $\mathbb{P}(E_1) \neq 0$ then the conditional probability of $E_2$ given $E_1$ is:}
+\textcolor{BlueViolet}{\begin{equation}
+    \mathbb{P}(E_2|E_1) = \frac{\mathbb{P}(E_1 \cap E_2)}{\mathbb{P}(E_1)}
+\end{equation}}
+\end{cframed}
+
+%-------------------------------------------------------------------------
+\section{Implications of Extra Information}
+
+Conditional probability can be used to measure how the occurrence of some event influences the chance of another event occurring:
+\begin{itemize}
+    \item If $\mathbb{P}(E_2|E_1) < \mathbb{P}(E_2)$ then $E_1$ occurring makes $E_2$ less probable.
+
+    \item If $\mathbb{P}(E_2|E_1) > \mathbb{P}(E_2)$ then $E_1$ occurring makes $E_2$ more probable.
+
+    \item If $\mathbb{P}(E_2|E_1) = \mathbb{P}(E_2) $ then the event $E_1$ has no impact on the probability of event $E_2$ and the events are independent.
+\end{itemize}
+
+%-------------------------------------------------------------------------
+\section{The Multiplication Rule}
+
+Above shows how to calculate the conditional probability $\mathbb{P}(E_2|E_1)$ from knowledge of $\mathbb{P}(E_1 \cap E_2)$. By rearranging Definition 4.1;
+\begin{equation}
+    \mathbb{P}(E_1 \cap E_2) = \mathbb{P}(E_1) \cdot \mathbb{P}(E_2|E_1)
+\end{equation}
+This is a useful formula for calculating $\mathbb{P}(E_1 /cap E_2)$ from knowledge of the conditional probability $\mathbb{P}(E_2|E_1)$\\
+
+\begin{cframed2}
+\textcolor{PineGreen}{\textit{\textbf{Theorem 4.2:}}}\\
+\textcolor{PineGreen}{Let $E_1,E_2,...,E_n$ be events (where $n \geq 2$), then}
+\textcolor{PineGreen}{\begin{equation}
+    \mathbb{P}(E_1 \cap E_2 \cap ... \cap E_n) = \mathbb{P}(E_1) \cdot \mathbb{P}(E_2|E_1) \cdot \mathbb{P}(E_3|E_1 \cap E_2) \cdot ... \cdot \mathbb{P}(E_n|E_1 \cap E_2 \cap ... \cap E_{n-1})
+\end{equation}}
+\end{cframed2}
+
+\textcolor{White}{1}\\
+\textit{\textbf{Examples:}}\\
+When $n=2$, $\mathbb{P}(E_1 \cap E_2) = \mathbb{P}(E_1) \cdot \mathbb{P}(E_2|E_1)$\\
+When $n=3$, $\mathbb{P}(E_1 \cap E_2 \cap E_3) = \mathbb{P}(E_1) \cdot \mathbb{P}(E_2|E_1) \cdot \mathbb{P}(E_3|E_1 \cap E_2)$\\
+
+\begin{cframedp}
+\textit{\textbf{Proof:}}\\
+To prove this induction will be used.\\
+Let $n = 2$ be the base case. This is already given in Definition (4.1).\\
+
+For the inductive step, assume that the statement holds for $n = k$;
+\begin{equation}
+    \mathbb{P}(E_1 \cap E_2 \cap ... \cap E_k) = \mathbb{P}(E_1) \cdot \mathbb{P}(E_2|E_1) \cdot \mathbb{P}(E_3|E_1 \cap E_2) \cdot ... \cdot \mathbb{P}(E_k|E1 \cap E_2 \cap ... \cap E_{k-1})
+\end{equation}
+and seek to prove the statement for n = k + 1\\
+
+Note that $E_1 \cap E_2 \cap ...\cap E_{k+1}$ can be written as $F_1 \cap F_2$ with\\
+$F_1 = E_1 \cap E_2 \cap ... \cap E_k$ and\\
+$F_2 = E_{k+1}$\\
+
+From Definition (4.1) we have $\mathbb{P}(F_1 \cap F_2) = \mathbb{P}(F_1) \cdot \mathbb{P}(F_2|F_1)$,
+\begin{equation}
+    \mathbb{P}(E_1 \cap E_2 \cap ... \cap E_{k+1}) = \mathbb{P}(E_1 \cap E_2 \cap ... \cap E_k) \cdot \mathbb{P}(E_{k+1}|E_1 \cap E_2 \cap ... \cap E_k)\\
+\end{equation}
+
+And substituting (4.4) into (4.5) gives
+\begin{equation}
+    \mathbb{P}(E_1 \cap E_2 \cap ... \cap E{k+1}) = \mathbb{P}(E_1) \cdot \mathbb{P}(E_2|E_1) \cdot \mathbb{P}(E_3|E_1 \cap E_2) \cdot ... \cdot \mathbb{P}(E_k|E_1 \cap E_2 \cap ... \cap E_{k-1}) \cdot \mathbb{P}(E_{k+1}|E_1 \cap E_2 \cap ... \cap E_k)
+\end{equation}
+which means the statement of the theorem also holds for $n = k + 1$ and hence, by the principle of induction, for all $n \geq 2$.
+\qed
+\end{cframedp}
+
+%-------------------------------------------------------------------------
+\chapter{Independence}
+%-------------------------------------------------------------------------
+\section{Independence for Two Events - Basic Definition}
+
+\begin{cframed}
+\textcolor{BlueViolet}{\textit{\textbf{Definition 5.1:}}}\\
+\textcolor{BlueViolet}{Events $E_1$ and $E_2$ are pairwise independent if}\\
+\textcolor{BlueViolet}{\begin{equation}
+    \mathbb{P}(E_1 \cap E_2) = \mathbb{P}{(E_1)\mathbb{P}(E_2)}
+\end{equation}}
+\end{cframed}
+\textcolor{White}{123}\\
+\textit{\textbf{Remarks:}}
+Ensure not to assume independence without good reason. Two events can be assumed independent in the following situations;
+\begin{itemize}
+    \item They are clearly physically unrelated (for example they are associated with different tosses of a coin)
+    \item The probabilities are calculated and $\mathbb{P}(E_1 \cap E_2) = \mathbb{P}(E_1)\mathbb{P}(E_2)$
+    \item They are defined as independent
+\end{itemize}
+Independence is \textit{not} equivalent to being physically unrelated. Physically unrelated events are always independent, but physically related events may or may not be independent.
+\pagebreak
+%-------------------------------------------------------------------------
+\section{Independence for Two Events - More Detail}
+
+\begin{cframed2}
+\textcolor{PineGreen}{\textit{\textbf{Theorem 5.2:}}}\\
+\textcolor{PineGreen}{Let $E_1$ and $E_2$ be events with $\mathbb{P}(E_1) > 0$ and $\mathbb{P}(E^2) > 0$. The following are equivalent:}\\
+\textcolor{PineGreen}{a) $E_1$ and $E_2$ are independent,}\\
+\textcolor{PineGreen}{b) $\mathbb{P}(E_1|E_2) = \mathbb{P}(E_1)$,}\\
+\textcolor{PineGreen}{c) $\mathbb{P}(E_2|E_1) = \mathbb{P}(E_2)$}
+\end{cframed2}
+
+\textcolor{White}{1}\\
+\begin{cframedp}
+\textit{\textbf{Proof:}}\\
+It is sufficient to show (a) implies (b) implies (c) implies (a) etc.
+\begin{itemize}
+    \item \textbf{(a) implies (b):}\\
+    If a is true, from Definition 5.1;
+    \begin{equation}
+        \mathbb{P}(E_1 \cap E_2) = \mathbb{P}(E_1)\mathbb{P}(E_2)
+    \end{equation}
+    and from Definition 4.1;
+    \begin{equation}
+        \mathbb{P}(E_1|E_2) = \frac{\mathbb{P}(E_1 \cap E_2)}{\mathbb{P}(E_2)}
+        = \frac{\mathbb{P}(E_1)\mathbb{P}E_2)}{\mathbb{P}(E_2)}
+        =\mathbb{P}(E_1)
+    \end{equation}
+    Therefore (b) is also true.\\
+    \item \textbf{(b) implies (c):}\\
+    By Definition 4.1;
+    \begin{equation}
+        \frac{\mathbb{P}(E_1) \cap E_2)}{\mathbb{P}(E_2)} = \mathbb{P}(E_1)
+    \end{equation}
+    \begin{equation}
+        \frac{\mathbb{P}(E_2) \cap E_1)}{\mathbb{P}(E_1)} = \mathbb{P}(E_2)
+    \end{equation}
+    Therefore (c) is also true\\
+    \item \textbf{(c) implies (a):}\\
+    By Definition 4.1;
+    \begin{equation}
+        \frac{\mathbb{P}(E_2 \cap E_1)}{\mathbb{P}(E_1)} = \mathbb{P}(E_2)
+    \end{equation}
+    which implies $\mathbb{P}(E_2 \cap E_1) = \mathbb{P}(E_1)\mathbb{P}(E_2)$\\
+    therefore $E_1$ and $E_2$ satisfy Definition 5.1 and are independent.\\
+    Therefore (a) is also true and the proof is complete.
+\end{itemize}   
+\qed
+\end{cframedp}
+
+%-------------------------------------------------------------------------
+\section{Independence for Three or More Events}
+
+\begin{cframed}
+\textcolor{BlueViolet}{\textit{\textbf{Definition 5.3:}}}\\
+\textcolor{BlueViolet}{Three events $E_1$, $E_2$, and $E_3$ are pairwise independent if;}\\
+\textcolor{BlueViolet}{$\mathbb{P}(E_1 \cap E_2) = \mathbb{P}(E_1)\mathbb{P}(E_2)$}\\
+\textcolor{BlueViolet}{$\mathbb{P}(E_1 \cap E_3) = \mathbb{P}(E_1)\mathbb{P}(E_3)$}\\
+\textcolor{BlueViolet}{$\mathbb{P}(E_2 \cap E_3) = \mathbb{P}(E_2)\mathbb{P}(E_3)$}\\
+
+\textcolor{BlueViolet}{The three events are called \textbf{mutually independent} if in addition;}\\
+\textcolor{BlueViolet}{$\mathbb{P}(E_1 \cap E_2 \cap E_3) = \mathbb{P}(E_1)\mathbb{P}(E_2)\mathbb{P}(E_3) $}
+\end{cframed}
+
+\begin{cframed}
+\textcolor{BlueViolet}{\textit{\textbf{Definition 5.4:}}}\\
+\textcolor{BlueViolet}{The events $E_1,E_2,...,E_n$ are mutually independent if for any $2 \leq t \leq n$ and $1 \leq i_1 < i_2 < ... < i_t \leq n$;}
+\textcolor{BlueViolet}{\begin{equation}
+    \mathbb{P}(E_{i1} \cap E_{i2} \cap ... \cap E_{it}) = \mathbb{P}(E_{i1}) \cdot \mathbb{P}(E_{i2} \cdot ... \cdot \mathbb{P}(E_{it})
+\end{equation}}
+\end{cframed}
+
+%-------------------------------------------------------------------------
+\section{Conditional Independence}
+
+It is also possible to consider independence of two evets given we know the third event happens.
+
+\begin{cframed}
+\textcolor{BlueViolet}{\textit{\textbf{Definition:}}}\\
+\textcolor{BlueViolet}{Two events $E_1$ and $E_2$ are said to be \textbf{conditionally independent} given an event $E_3$ if;}
+\textcolor{BlueViolet}{\begin{equation}
+    \mathbb{P}(E_1 \cap E_2|E_3) = \mathbb{P}(E_1|E_3)\mathbb{P}(E_2|E_3)
+\end{equation}}
+\end{cframed}
+
+%-------------------------------------------------------------------------
+\chapter{Total Probability and Bayes' Theorem}
+%-------------------------------------------------------------------------
+\section{Law of Total Probability}
+
+\begin{cframed}
+\textcolor{BlueViolet}{\textit{\textbf{Definition 6.1:}}}\\
+\textcolor{BlueViolet}{The events $E_1, E_2,...,E_n$ \textbf{partition} $S$ if they are pairwise disjoint and $E_1 \cup E_2 \cup ... \cup E_n = S$. We can also say that the set $ \{ E_1, E_2,...,E_n \}$ is a \textbf{partition} of $S$.}
+\end{cframed}
+
+\textcolor{White}{123}
+
+\begin{cframed2}
+\textcolor{PineGreen}{\textit{\textbf{Theorem 6.2} (Law of Total Probability):}}\\
+\textcolor{PineGreen}{Suppose that $E_1,E_2,...E_n$ partition $S$ with $\mathbb{P}(E_k) > 0$ for $k = 1,2,...,n$.}\\
+\textcolor{PineGreen}{Then for any event A;}
+\textcolor{PineGreen}{\begin{equation}
+    \mathbb{P}(A) = \mathbb{P}(A|E_1)\mathbb{P}(E_1) + \mathbb{P}(A|E_2)\mathbb{P}(E_2) + ... + \mathbb{P}(A|E_n)\mathbb{P}(E_n)
+\end{equation}
+\begin{equation}
+    \mathbb{P}(A) = \sum_{k=1}^{n} \mathbb{P}(A|E_k)\mathbb{P}(E_k)
+\end{equation}}
+\end{cframed2}
+
+\textit{\textbf{Note:}}
+If $E_1 = C$ and $E_2 = C^c$,\\
+$\mathbb{P}(A) = \mathbb{P}(A|C)\mathbb{P}(C) + \mathbb{P}(A|C^c)\mathbb{P}(C^c) $
+\textcolor{White}{123}
+
+\begin{cframedp}
+\textit{\textbf{Proof:}}\\
+Let $A_k = A \cap E_k$ for $k = 1,2,...,n$.\\
+By Definition 6.1 the sets $E_1, E_2,..., E_n$ are pairwise disjoint and $E_1 \cup E_2 \cup ... \cup E_n += S$. Since $A_k \subseteq E_k$ the events $A_1, A_2,...,A_n$ are also pairwise disjoint, and;
+\begin{equation}
+    A_1 \cup A_2 \cup ... \cup A_n = A \cap (E_1 \cup E_2 \cup ... \cup E_n ) = A \cap S = A
+\end{equation}
+Therefore, by Definition 2.1 (c);
+\begin{equation}
+    \mathbb{P}(A) = \mathbb{P}(A_1) + \mathbb{P}(A_2) + ... + \mathbb{P}(A_n)
+\end{equation}
+Since $\mathbb{P}(E_k) > 0$,
+\begin{equation}
+    \mathbb{P}(A_k) = \mathbb{P}(A \cap E_k) = \frac{\mathbb{P}(A \cap E_k)}{\mathbb{P}(E_k)} \cdot \mathbb{P}(E_k) = \mathbb{P}(A|E_k) \cdot \mathbb{P}(E_k)
+\end{equation}
+Substituting (6.5) into (6.4) gives the statement of the theorem.
+\qed
+\end{cframedp}
+
+%-------------------------------------------------------------------------
+\section{Total Probability for Conditional Probabilities}
+
+\begin{cframed2}
+\textcolor{PineGreen}{\textit{\textbf{Theorem 6.3:}}\\
+If $E_1, E_2, ... E_n$ partition $S$ with $\mathbb{P}(E_k) > 0$ for $k = 1, 2,...,n$, then for events $A$ and $B$ with $\mathbb{P}(B \cap E_k) > 0$ for $k = 1, 2,..., n$;
+\begin{equation}
+    \mathbb{P}(A|B) = \mathbb{P}(A|B \cap E_1) \cdot \mathbb{P}(E_1|B) + \mathbb{P}(A|B \cap E_2) \cdot \mathbb{P}(E_2|B) + ... + \mathbb{P}(A|B \cap E_n) \cdot \mathbb{P}(E_n|B)
+\end{equation}
+\begin{equation}
+    \mathbb{P}(A|B) = \sum_{k=1}^{n} \mathbb{P}(A|B \cap E_k) \cdot \mathbb{P}(E_k|B)
+\end{equation}
+}
+\end{cframed2}
+
+\textcolor{White}{123}
+
+\begin{cframedp}
+From Definition 4.1;
+\begin{equation}
+    \mathbb{P}(A|B) = \frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}
+\end{equation}
+and applying Theorem 6.2;
+\begin{equation}
+    \mathbb{P}(A|B) = \frac{\mathbb{P}(A \cap B|E_1) \cdot \mathbb{P}(E_1) + \mathbb{P}(A \cap B|E_2) \cdot \mathbb{P}(E^2) + ... + \mathbb{P}(A \cap B|E_n) \cdot \mathbb{P}(E_n)}{\mathbb{P}(B)}
+\end{equation}
+For $k = 1,2,...,n$,\\
+Using Definition 4.1;
+\begin{equation}
+    \frac{1}{\mathbb{P}(B)} \cdot \mathbb{P}(A \cap B|E_k) \cdot \mathbb{P}(E_k) = \frac{1}{\mathbb{P}(B)} \cdot \frac{\mathbb{P}(A \cap B \cap E_k)}{\mathbb{P}(E_k)} \cdot \mathbb{P}(E_k)
+\end{equation}
+Using $\mathbb{P}(B \cap E_k) > 0$;
+\begin{equation}
+    = \frac{1}{\mathbb{P}(B)} \cdot \mathbb{P}(A \cap B \cap E_k) \cdot \frac{\mathbb{P}(B \cap E_k)}{\mathbb{P}(B \cap E_k)}
+\end{equation}
+\begin{equation}
+    = \frac{\mathbb{P}(A \cap B \cap E_k)}{\mathbb{P}(B \cap E_k)} \cdot \frac{\mathbb{P}(B \cap E_k)}{\mathbb{P}(B)}
+\end{equation}
+Using Definition 4.1;
+\begin{equation}
+    = \mathbb{P}(A|B \cap E_k) \cdot \mathbb{P}(E_k|B)
+\end{equation}
+Substituting (6.13) into (6.9) gives the statement of the theorem.
+\qed
+\end{cframedp}
+\pagebreak
+%-------------------------------------------------------------------------
+\section{Bayes' Theorem}
+
+\begin{cframed2}
+\textcolor{PineGreen}{\textit{\textbf{Theorem 6.4} (Bayes' Theorem):}\\
+If $A$ and $B$ are events with $\mathbb{P}(A), \mathbb{P}(B) > 0$, then;
+\begin{equation}
+    \mathbb{P}(B|A)= \frac{\mathbb{P}(A|B) \cdot \mathbb{P}(B)}{\mathbb{P}(A)}
+\end{equation}}
+\end{cframed2}
+
+\textcolor{White}{1}
+
+\begin{cframedp}
+Using Definition 4.1;
+\begin{equation}
+    \mathbb{P}(B|A) = \frac{\mathbb{P}(B \cap A}{\mathbb{P}(A)}
+\end{equation}
+\begin{equation}
+    \mathbb{P}(B|A) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(A)} \cdot \frac{\mathbb{P}(B)}{\mathbb{P}(B)}
+\end{equation}
+\begin{equation}
+    \mathbb{P}(B|A) = \frac{\mathbb{P}(A \cap B}{\mathbb{P}(B)} \cdot \frac{\mathbb{P}(B)}{\mathbb{P}(A)}
+\end{equation}
+\begin{equation}
+    \mathbb{P}(B|A) = \mathbb{P}(A|B) \cdot \frac{\mathbb{P}(B)}{\mathbb{P}(A)}
+\end{equation}
+\qed
+\end{cframedp}
+%-------------------------------------------------------------------------
+\chapter{Introduction to Random Variables}
+%-------------------------------------------------------------------------
+\section{Concept of a Random Variable}
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 8.1:}}\\
+    A \textbf{random variable} is a function from $S$ to $\mathbb{R}$.}
+\end{cframed}
+\begin{itemize}
+    \item If $X$ is a random variable, then $\mathbb{P}(X)$ makes no sense as $X$ is not an event. 
+    \item The set of all outcomes $\omega \in S$ such that $X(\omega) = x$ is, however, an event.
+    \item The shorthand $X = x$ is used for the set $\{w \in S : X(w) = x$.
+    \item For example, $\mathbb{P}(X = 2)$ makes sense - as it is the probability the random variable $X$ takes the value two. 
+\end{itemize}
+
+%-------------------------------------------------------------------------
+\section{Distributions of Discrete Random Variables}
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 8.2:}}\\
+    A random variable $X$ is \textbf{discrete} if the set of values that $X$ takes is either finite or countably infinite.}
+\end{cframed}
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 8.3:}}\\
+    The \textbf{probability mass function} (p.m.f) of a discrete random variable $X$ is the function which given input $x$ has output $\mathbb{P}(X = x)$:
+    \begin{equation}
+        x \mapsto \mathbb{P}(X = x)
+    \end{equation}
+    The p.m.f. is sometimes denoted by $p$ - $p(x) = \mathbb{P}(X = x)$}
+\end{cframed}
+
+%-------------------------------------------------------------------------
+\section{Properties of the Probability Mass Function}
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Proposition 8.4:}}\\
+    If $X$ is a discrete random variable which takes values $x_1,x_2,x_3,...$ then,
+    \begin{equation}
+        \sum_{k} \mathbb{P}(X = x_k) = \mathbb{P}(X = x_1) + \mathbb{P}(X = x_2) + \mathbb{P}(X = x_3) + ... = 1
+    \end{equation}}
+\end{cframedprop}
+
+%-------------------------------------------------------------------------
+\chapter{Expectation and Variance}
+%-------------------------------------------------------------------------
+\section{Expected Value}
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 9.1:}}\\
+    If $X$ is a discrete random variable which takes values $x_1,x_2,x_3,...$, then the \textbf{expectation} of $X$ is defined by;
+    \begin{equation*}
+        \mathbb{E}(X) = x_1\mathbb{P}(X = x_1) + x_2\mathbb{P}(X = x_2) + x_3\mathbb{P}(X = x_3) + ...
+    \end{equation*}
+    \begin{equation}
+        \mathbb{E}(X) = \sum_k x_k\mathbb{P}(X = x_k)
+    \end{equation}}
+\end{cframed}
+\begin{itemize}
+    \item The expectation is sometimes called the \textbf{mean} and denoted by $\mu$.
+    \item The expected value does not have to be one of the possible values of the random variable.
+\end{itemize}
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Proposition 9.2:}}\\
+    If $m \leq X(\omega \leq M$ for all $\omega \in S$, then
+    \begin{equation}
+        m \leq \mathbb{E}(X) \leq M
+    \end{equation}}
+\end{cframedprop}
+
+%-------------------------------------------------------------------------
+\section{Expectation of a Function of a Random Variable}
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Proposition 9.3:}}\\
+    If $f$ is a real-valued function defined on the range of a discrete random variable $X$, then
+    \begin{equation}
+        \mathbb{E}(f(X)) = \sum_k f(x_k)\cdot \mathbb{P}(X = x_k)
+    \end{equation}}
+\end{cframedprop}
+
+%-------------------------------------------------------------------------
+\section{Moments and Variance}
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 9.4:}}\\
+    The \textbf{\textit{n}th moment} of the random variable $X$ is the expectation $\mathbb{E}(X^n)$.}
+\end{cframed}
+
+Such expectations can easily be calculated for discrete random variables using Proposition 9.3. Their values give information about the shape of the probability mass function. In particular, the second moment is related to the \textbf{variance} which quantifies the spread of the distribution.
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 9.5:}}\\
+    If $X$ is a discrete random variable which takes values $x_1,x_2,x_3,...$, then the \textbf{variance} of $X$ is defined by;
+    \begin{equation}
+        Var(X) = \sum_k (x_k - \mathbb{E}(X))^2 \cdot \mathbb{P}(X = x_k)
+    \end{equation}}
+\end{cframed}
+
+\begin{itemize}
+    \item The variance is the expectation of the square of the difference between $X$ and $\mathbb{E}(X)$.
+    \item The variance measures how sharply concentrated $X$ is about $\mathbb{E}(X)$, with a small variance meaning sharply concentrated, and a large variance meaning spread out.
+    \item The square root of the variance is the \textbf{standard deviation}.
+\end{itemize}
+
+\begin{cframedprop}
+\textcolor{Maroon}{\textbf{\textit{Proposition 9.6:}}\\
+    If $X$ is a discrete random variable, 
+    \begin{equation}
+        Var(X) = \mathbb{E}(X^2) - \mathbb{E}(X)^2
+    \end{equation}}
+\end{cframedprop}
+\begin{itemize}
+    \item This expression means 'the mean of the square minus the square of the mean'.
+\end{itemize}
+
+%-------------------------------------------------------------------------
+\section{Properties of Expectation and Variance}
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Proposition 9.7:}}\\
+    If $a,b \in \mathbb{R}$and $X$ is a discrete random variable, then;
+    \begin{equation}
+        \mathbb{E}(aX + b) = a\mathbb{E}(X) + b
+    \end{equation}}
+\end{cframedprop}
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Proposition 9.8:}}\\
+    If $a,b \in \mathbb{R}$ and $X$ is a discrete random variable, then;
+    \begin{equation}
+        Var(aX + b) = a^2Var(X)
+    \end{equation}}
+\end{cframedprop}
+
+%-------------------------------------------------------------------------
+\chapter{Special Discrete Random Variables}
+%-------------------------------------------------------------------------
+\section{Bernoulli Distribution}
+
+Consider an experiment where there are only two possible outcomes labelled 'success' and 'failure'. This setup is called a \textbf{Bernoulli Trial}. Supposing the probability of success is $p$, then the random variable defined by $X(success) = 1$ and $X(failure) = 0$, has the probability mass function;
+
+\begin{table}[h!]
+  \begin{center}
+    \begin{tabular}{r|c|c} 
+      $k$ & $0$ & $1$\\
+      \hline
+      $\mathbb{P}(X = k)$ & $1-p$ & $p$\\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+This p.m.f. is called the \textbf{Bernoulli distribution}, with parameter $p$, wrote $X\thicksim$ Bernoulli($p$), where the symbol '$\thicksim$' loosely means 'has the distribution of'.\\
+
+\begin{equation}
+    \mathbb{E}(X) = p
+\end{equation}
+\begin{equation}
+    Var(X) = p(1-p)
+\end{equation}
+
+%-------------------------------------------------------------------------
+\section{Binomial Distribution}
+
+Often we are interested in the number of 'successes' from not a single trial, but multiple repeated trials - for example the number of Heads when a coin is tossed 100 times. Consider performing $n$ independent Bernoulli trials, each with the same probability $p$ of success. Let $X$ be the number of successes in these $n$ trials. The p.m.f. is
+\begin{equation}
+    \mathbb{P}(X = k) = \binom{n}{k}p^k(1-p)^{n-k}
+\end{equation}
+\rightline{for $k = 0,1,2,...$}
+We call this the \textbf{binomial distribution}, with parameters $n$ and $p$, and write $X \thicksim$ Bin($n,p$).
+
+\begin{equation}
+    \mathbb{E}(X) = np
+\end{equation}
+\begin{equation}
+    Var(X) = np(1-p)
+\end{equation}
+
+%-------------------------------------------------------------------------
+\section{Geometric Distribution}
+
+Suppose we make an unlimited number of independent Bernoulli trials, each with success probability $p$, and let $T$ be the number of trials up to and including the first success. To find the probability mass function for the general situation, we note that '$T = k$' is a simple event consisting of a single outcome; $k-1$ failures, each with probability $1-p$, followed by one success with probability $p$.
+
+\begin{equation}
+    \mathbb{P}(T = k) = (1 - p)^{k-1}p 
+\end{equation}
+\rightline{for $k = 1,2,3,...$}
+We say that $T$ has the \textbf{geometric distribution} with parameter $p$ and write $T \thicksim$ Geom(p)
+
+\begin{equation}
+    \mathbb{T} = \frac{1}{p}
+\end{equation}
+\begin{equation}
+    Var(T) = \frac{1-p}{p^2}
+\end{equation}
+
+%-------------------------------------------------------------------------
+\section{Poisson Distribution}
+
+Suppose we consider the binomial distribution and make the number of trials $n$ larger and larger whilst keeping the expectation the same. This means that the success probability must be of the form $\frac{\lambda}{n}$ with $\lambda$ a strictly positive constant. In the $n \longrightarrow \infty$ limit the p.m.f becomes;
+
+\begin{equation}
+    \mathbb{P}(X = k) = \frac{\lambda^k}{k!}e^{-\lambda}
+\end{equation}
+\rightline{for $k = 0,1,2,...$}
+
+In this case we say $X$ has the \textbf{Poisson distribution} with parameter $\lambda$ and we write $X \thicksim$ Poisson($\lambda$).
+\begin{itemize}
+    \item If $0 < \lambda \leq 1$, then the p.m.f $\mathbb{P}(x = k)$ is non-increasing.
+    \item If $\lambda > 1$, then the p.m.f increases for small $k$ before decreasing for large $k$.
+\end{itemize}
+
+\begin{equation}
+    \mathbb{E}(X) = \lambda
+\end{equation}
+\begin{equation}
+    Var(X) = \lambda
+\end{equation}
+%-------------------------------------------------------------------------
+\section{Summary}
+
+\begin{table}[h!]
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c} 
+      Distribution & Values & $\mathbb{P}(X = k)$ & $\mathbb{E}(X)$ & $Var(X)$\\
+      \hline
+      $X \thicksim$ Bernoulli($p$) &  $X = 0,1$ & $1 - p$ for $k = 0$, $p$ for $k = 1$ & $p$ & $p(1-p)$\\
+      $X \thicksim$ Bin($n,p$) & $X = 0,1,...,n$ & $\binom{n}{k} p^k (1-p)^{n-k}$ & $np$ & $np(1-p)$\\
+      $X \thicksim$ Geom($p$) & $X = 1,2,3,...$ & $(1 - p)^{k-1}p$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$\\
+      $X \thicksim$ Poisson($\lambda$) & $X = 0,1,2,...$ & $\frac{\lambda^k}{k!}e^{-\lambda}$ & $\lambda$ & $\lambda$
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{itemize}
+    \item If a random variable only takes two possible values, it can always be related to a Bernoulli random variable.
+    \item If a random variable is counting the number of times something happens in a fixed number of independent trials, it has a binomial distribution.
+    \item If a random variable is counting the number of independent trials until something happens, it has a geometric distribution.
+    \item If a random variable is counting the number of times something happens in a fixed interval, it probably has a Poisson distribution.
+\end{itemize}
+
+%-------------------------------------------------------------------------
+\chapter{Several Random Variables}
+%-------------------------------------------------------------------------
+\section{Joint and Marginal Distributions}
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 11.1:}}\\
+    Let $X$ and $Y$ be two discrete random variables defined on the same sample space and taking values $x_1,x_2,...$ and $y_1,y_2,...$ respectively. The function
+    \begin{equation}
+        (x_k,y_l) \mapsto \mathbb{P}((X=x_k) \cap (Y=y_l))
+    \end{equation}
+    is called the \textbf{joint probability mass function} of $X$ and $Y$.\\
+    It is usually written as $\mathbb{P}(X = x_k, Y = y_l)$ instead of $\mathbb{P}((X=x_k) \cap (Y=y_l))$}
+\end{cframed}
+
+The next proposition relates the joint distribution $mathbb(X = x_k, Y = y_l)$ and the so-called \textbf{marginals} $\mathbb{P}(X = x_k)$ and $\mathbb{P}(Y = y_l)$.
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Proposition 11.2:}}\\
+    Let $X$ and $Y$ be two discrete random variables defined on the same sample space and taking values of $x_1,x_2,...$ and $y_1,y_2,...$ respectively. The marginal distribution of $X$ can be obtained from the joint distribution as
+    \begin{equation}
+        \mathbb{P}(X = x_k) = \sum_l \mathbb{P} (X = x_k, Y = y_l)
+    \end{equation}
+    Similarly, the marginal distribution of $Y$ is given by
+    \begin{equation}
+        \mathbb{P}(Y = y_l) = \sum_k \mathbb{P}(X = x_k, Y = y_l)
+    \end{equation}}
+\end{cframedprop}
+
+%-------------------------------------------------------------------------
+\section{Expectations in the Multivariate Context}
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Proposition 11.3:}}\\
+    If $gf(X,Y)$ is a real-valued function of the two discrete random variables $X$ and $Y$ then the expectation of $g(X,Y)$ is obtained as
+    \begin{equation}
+        \mathbb{E}(g(X,Y)) = \sum_k \sum_l g(x_k, y_l) \mathbb{P}(X = x_k, Y = y_l)
+    \end{equation}}
+\end{cframedprop}
+
+\begin{cframed2}
+    \textcolor{PineGreen}{\textbf{\textit{Theorem 11.4:}}\\
+    If $X$ and $Y$ are discrete random variables then;
+    \begin{equation}
+        \mathbb{E}(X + Y) = \mathbb{E} + \mathbb{Y}
+    \end{equation}}
+\end{cframed2}
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textit{\textbf{Corollary 11.5} (Linearity of Expectation):}\\
+    If $X_1,X_2,...,X_n$ are discrete random variables and $c_1,c_2,...,c_n$ real-valued constants, then
+    \begin{equation}
+        \mathbb{E}(c_1X_1 + c_2X_2 + ... + c_nX_n) = c_1\mathbb{E}(X_1) + c_2\mathbb{E}(X_2) + ... + c_n\mathbb{E}(X_n)
+    \end{equation}}
+\end{cframedprop}
+
+%-------------------------------------------------------------------------
+\section{Independence for Random Variables}
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 8.6}:}\\
+    Two discrete random variables $X$ and $Y$ are \textbf{independent} if the events '$X = x_k$' and '$Y = y_l$' are independent for all possible values $x_k,y_l$ if;
+    \begin{equation}
+        \mathbb{P}(X = x_k, Y = y_l) = \mathbb{P}(X = x_k) \mathbb{P}(Y = y_l)
+    \end{equation}}
+\end{cframed}
+
+\begin{cframed2}
+    \textcolor{PineGreen}{\textbf{\textit{Theorem 11.7:}}\\
+    If $X$ and $Y$ are independent discrete random variables then:
+    \begin{equation}
+        \mathbb{E}(X \cdot Y) = \mathbb{E}(X) \cdot \mathbb{E}(Y)
+    \end{equation}
+    \begin{equation}
+        Var(X + Y) = Var(X) + Var(Y)
+    \end{equation}}
+\end{cframed2}
+
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Corollary 11.8:}}\\
+    If $X_1,X_2,...,X_n$ are independent discrete random variables and $c_1,c_2,...,c_n$ are real-valued constants, then;
+    \begin{equation}
+        Var(c_1X_1 + c_2X_2 + ... + c_nX_n) = c_1^2Var(X_1) + c_2^2Vae(X_2) + ... + c_n^2Var(X_n)
+    \end{equation}}
+\end{cframedprop}
+
+%-------------------------------------------------------------------------
+\chapter{Covariance and Conditional Expectation}
+%-------------------------------------------------------------------------
+\section{Covariance and Correlation}
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 12.1:}}\\
+    Let $X$ and $Y$ be discrete random variables defined on the same sample space. The \textbf{covariance of \textit{X} and \textit{Y}} is defined by;
+    \begin{equation}
+        Cov(X,Y) = \mathbb{E}((X - \mathbb{E}(X))(Y - \mathbb{E}(Y)))
+    \end{equation}
+    If $Var(X) > 0$ and $Var(Y) > 0$, then the \textbf{correlation coefficient of \textit{X} and \textit{Y}} is defined by;
+    \begin{equation}
+        Corr(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var(X)\cdot Var(Y)}}
+    \end{equation}}
+\end{cframed}
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Proposition 12.2:}}\\
+    If $X$ and $Y$ are discrete random variables defined on the same sample space, then;
+    \begin{equation}
+        Cov(X,Y) = \mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)
+    \end{equation}}
+\end{cframedprop}
+\begin{itemize}
+    \item When $Cov(X,Y) = 0$, we say $X$ and $Y$ are \textbf{uncorrelated.}
+    \item If $X$ and $Y$ are independent, then $Cov(X,Y) = 0$, but $Cov(X,Y) = 0$ does not neccessarily mean $X$ and $Y$ are independent.
+    \item Correlation does not neccessarily imply causation.
+\end{itemize}
+
+\begin{cframedprop}
+    \textcolor{Maroon}{\textbf{\textit{Proposition 12.3:}}\\
+    Let $X$ and $Y$ be discrete random variables defined on the same sample space, with $Var(X) > 0$ and $Var(Y) > 0$.\\
+    If $a,b,c,d$ are real-valued constants with $a > 0$ and $c > 0$, then;
+    \begin{equation}
+        Corr(aX + b, cX + d) = Corr(X,Y)
+    \end{equation}
+    $-1 \leq Corr(X,Y) \leq 1$.}
+\end{cframedprop}
+
+%-------------------------------------------------------------------------
+\section{Conditional Expectation}
+
+\begin{cframed}
+    \textcolor{BlueViolet}{\textbf{\textit{Definition 12.4}}\\
+    Let $X$ be a discrete random variable and $A$ be an event with $\mathbb{P}(A) > 0$. The conditional probability;
+    \begin{equation}
+        \mathbb{P}(X = x_k | A) = \frac{\mathbb{P}((X = x_k) \cap A}{\mathbb{P}(A)}
+    \end{equation}
+    defines the \textbf{probability mass function} of $X$ given $A$. The corresponding expectation;
+    \begin{equation}
+        \mathbb{E}(X|A) = \sum_k x_k \mathbb{P}(X = x_k | A)
+    \end{equation}
+    is called the \textbf{conditional expectation}.}
+\end{cframed}
+
+%-------------------------------------------------------------------------
+\section{The Law of Total Probability for Expectations}
+
+\begin{cframed2}
+    \textcolor{PineGreen}{\textbf{\textit{Theorem 12.5:}}\\
+    Suppose that $E_1,E_2,...,E_n$ partition $S$ with $\mathbb{P}(E_i) > 0$ for $i \in \mathbb{N}$. Then for any discrete random variable $S$ we have
+    \begin{equation}
+        \mathbb{E}(X) = \sum_{i=1}^n \mathbb{E}(X|E_i)\mathbb{P}(E_i)
+    \end{equation}}
+\end{cframed2}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
