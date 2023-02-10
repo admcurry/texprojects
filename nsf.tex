@@ -1,0 +1,851 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\newgeometry{left=3cm,bottom=2cm, right=3cm, top=2cm}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{charter}
+%-------------------------------------------------------------------------
+\newenvironment{frameblue}[1][BlueViolet]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+
+
+\newenvironment{framegreen}[1][PineGreen]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+
+\newenvironment{frameblack}[1][Black]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+
+\newenvironment{framered}[1][Maroon]
+  {\begin{tcolorbox}[colframe=#1,colback=white]}
+  {\end{tcolorbox}}
+%-------------------------------------------------------------------------
+\title{\huge{\textbf{\textit{Numbers, Sets \& Functions}}}\\
+\Large\textbf{\textit{Complete Summarised Notes}}\\
+MTH4113 - Year 1 Semester 1}
+
+\author{Adam Curry}
+\date{September - December 2022}
+
+\begin{document}
+\maketitle
+\tableofcontents
+%-------------------------------------------------------------------------
+\chapter{Mathematical Notation}
+%-------------------------------------------------------------------------
+\section{Basic Arithmatic Notations}
+
+\begin{equation*}
+    + - \div \times
+\end{equation*}
+
+%-------------------------------------------------------------------------
+\section{Sigma Notation}
+
+$\sum$ is used for sums.\\
+$\sum_{n=1}^b n^2 = 1^2 + 2^2 + 3^2 + 4^2$\\
+In general,
+\begin{equation*}
+    \sum_{n=a}^b x_n
+\end{equation*}
+Range of summation: the range of values.\\
+Dummy variable: $n$ - as it is introduced temporarily and then forgotten.
+
+%-------------------------------------------------------------------------
+\section{Manipulating Sums}
+
+\begin{framered}
+\begin{equation*}
+    \sum_{n=1}^{10} (n^3+n^2) = \sum_{n=1}^{10} n^3 + \sum_{n=1}^{10} n^2
+\end{equation*}
+
+\begin{equation*}
+    \sum_{n=1}^{20} (n+1)^2 = \sum_{m=2}^{21} m^2
+\end{equation*}
+
+\begin{flushright}
+(let $n+1 = m$)
+\end{flushright}
+\end{framered}
+
+\begin{frameblack}
+    \textit{\textbf{Example:}}\\
+    \begin{equation*}
+        Let \: S = \sum_{n=0}^{99} (n+1)^2 - n^2
+    \end{equation*}
+    Splitting the summand:
+    \begin{equation*}
+        S = \sum_{n=0}^{99} (n+1)^2 - \sum_{n=0}^{99} n^2
+    \end{equation*}
+    Substituting the dummy variable:
+    \begin{equation*}
+        S = \sum_{m=1}^{100} m^2 - \sum_{m=0}^{99} m^2
+    \end{equation*}
+    Splitting the range of summation:
+    \begin{equation*}
+        S = \sum_{m=1}^{99} m^2 + 100^2 - \sum_{m=1}^{99} m^2 - 0^2
+    \end{equation*}
+    \begin{equation*}
+        S = 100^2 + 0^2 = 10000
+    \end{equation*}
+\end{frameblack}
+
+%-------------------------------------------------------------------------
+\section{Products \& Factorials}
+
+The notation for products is similar to sums;
+\begin{equation*}
+    \prod_{n=1}^3 (2n+1) = 105
+\end{equation*}
+
+All the above techniques apply, just now with multiplying rather than adding.\\
+
+A special case of a product is called the \textbf{factorial};
+\begin{equation*}
+    m! = \prod_{n=1}^m n
+\end{equation*}
+For example, $3! = 1 \cdot 2 \cdot 3 = 6$\\
+$0!$ is defined as 1
+\begin{equation*}
+    (n+1) \cdot n! = (n+1)!
+\end{equation*}
+
+%-------------------------------------------------------------------------
+\chapter{Logic}
+%-------------------------------------------------------------------------
+\section{Statements}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    A \textbf{statement} or \textbf{assertion} is an expression which can be a complete sentence by itself, and is either true or false.
+\end{frameblue}
+
+Statements can be labelled with a letter or symbol, for example; let $P$ be the statement $1 + 2 =3$.\\
+Two statements $P(n)$ and $Q(n)$ are equivalent if for each value of $n$ the statements are both true or both false
+
+%-------------------------------------------------------------------------
+\section{Negation}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    If $P$ is a statement, the \textbf{negation} of P is the statement "not p".
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\section{Implications}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $P$ and $Q$ are statements. The statement "If $P$ then $Q$" is called an \textbf{implication}. It is false if $P$ is true and $Q$ is false, otherwise it is true. It is denoted $P \implies Q$ to mean if $P$ then $Q$.
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\section{Quantifiers}
+
+\textbf{Quantifier statements} involve adding 'for all' or 'there exists' to a statement.
+
+Examples include;
+\begin{itemize}
+\item For every integer $n$, $n$ is even.
+\item Every integer is even.
+\item Let $n$ be an integer. Then $n$ is even.
+\end{itemize}
+
+\begin{frameblack}
+    \begin{itemize}
+        \item \textbf{Original:} $x^2 \geq 0$ for every real number $x$.\\
+        \textbf{Negation:} $x^2 < 0$ for some real number $x$.\\
+        \item \textbf{Original:} There is a prime number larger than 100.\\
+        \textbf{Negation:} Every prime number is less than or equal to 100.\\
+        \item \textbf{Original:} For any integer $n$, there is an integer $m$ which is larger than $n$.\\
+        \textbf{Negation:} There is an integer $n$ such that every integer $m$ is less than or equal to $n$.
+    \end{itemize}
+\end{frameblack}
+
+%-------------------------------------------------------------------------
+\section{Converse \& Contrapositive}
+
+The \textbf{converse} of $P \implies Q$ is $Q \implies P$.\\
+The \textbf{contrapositive} of $P \implies Q$ is $(not Q) \implies (not P)$
+
+%-------------------------------------------------------------------------
+\chapter{Proofs}
+%-------------------------------------------------------------------------
+\section{What is a Proof?}
+
+Something distinguishing mathematics from other fields is the concept of a mathematical proof. A proof is a logical argument which establishes some result with complete certainty. This is the standard required for a result to be accepted as a mathematical theorem.
+
+%-------------------------------------------------------------------------
+\section{Disproving a Statement}
+
+To disprove a 'for all' statement, a \textbf{counterexample} must be provided.
+%-------------------------------------------------------------------------
+
+\section{Technique 1: Proving the Contrapositive}
+
+\begin{framered}
+    \textbf{Theorem 3.1:}\\
+    Let $n$ be an integer. If $n^2$ is even, then $n$ is even.
+\end{framered}
+
+\begin{frameblack}
+    \textbf{Proof:}\\
+    Proving the contrapositive - showing if $n$ is odd, then $n^2$ is odd.\\
+    Assuming n is odd; $n^2 = 2k + 1$ for some $k \in \mathbb{Z}$, so\\
+    \begin{equation*}
+        n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 +2k) +1
+    \end{equation*}
+    which is odd.
+    \qed
+\end{frameblack}
+\pagebreak
+%-------------------------------------------------------------------------
+
+\section{Technique 2: Proof by Contradiction}
+
+\begin{framered}
+    \textbf{Theorem 3.2:}\\
+    There is no rational number $q$ such that $q^2 = 2$.
+\end{framered}
+
+\begin{frameblack}
+    \textbf{Proof:}\\
+    Suppose for a contradiction, there does exist a rational number $q$ so that $q^2 = 2$.\\
+    Therefore we could write $q = \frac{a}{b}$, where $a,b \in \mathbb{Z} and b \neq 0$, and $a$ and $b$ are in their lowest terms.
+    \begin{equation*}
+        q^2 = 2
+    \end{equation*}
+    \begin{equation*}
+        \frac{a^2}{b^2} = 2
+    \end{equation*}
+    \begin{equation*}
+        a^2 = 2b^2
+    \end{equation*}
+    Therefore, $a^2$ is even, and $a$ is even, so $a = 2k$ for some $k \in \mathbb{Z}$, so
+    \begin{equation*}
+        (2k)^2 = 2b^2
+    \end{equation*}
+    \begin{equation*}
+        4k^2 = 2b^2
+    \end{equation*}
+    \begin{equation*}
+        2k^2 = b^2
+    \end{equation*}
+    Therefore $b^2$ is even and $b$ is even, which means they are not in their lowest terms, and such contradicts our assumption.\\
+    So no such $q$ exists.
+    \qed
+\end{frameblack}
+
+%-------------------------------------------------------------------------
+\section{Technqiue 2: Proof by Induction}
+
+\begin{framered}
+    \textbf{Theorem 3.3:}\\
+    Suppose $n$ is a positive integer, then;
+    \begin{equation*}
+        \sum_{k=1}^n 2k-1 = n^2
+    \end{equation*}
+\end{framered}
+
+\begin{frameblack}
+    \textbf{Proof:}\\
+    Proof by Induction, let $P(n)$ denote the equation $\sum_{k=1}^n 2k-1 = n^2$\\
+    Base Case - $P(1)$:\\
+    $LHS = \sum_{k=1}^1 2k-1 = 1$\\
+    $RHS = 1^2 = 1$\\
+    $LHS = RHS$ and so the base case is true.\\
+
+    Inductive Step:\\
+    Suppose $n \geq 2$ and that $P(n-1)$ is true, then,\\
+    \begin{equation*}
+        \sum_{k=1}^{n-1} 2k-1 = (n-1)^2
+    \end{equation*}
+    So,
+    \begin{equation*}
+        \sum_{k=1}^n 2k-1 = \sum_{k=1}^n 2k-1 + 2n -1
+    \end{equation*}
+    \begin{equation*}
+        \sum_{k=1}^n 2k-1 = (n-1)^2 +2n-1
+    \end{equation*}
+    \begin{equation*}
+        \sum_{k=1}^n 2k-1 = n^2 -2n + 1 + 2n - 1
+    \end{equation*}
+    \begin{equation*}
+        \sum_{k=1}^n 2k-1 = n^2
+    \end{equation*}
+    So $P(n)$ is true\\
+    By induction, $P(n)$ is true for every $n$.
+    \qed
+\end{frameblack}
+
+%-------------------------------------------------------------------------
+\chapter{Integers}
+%-------------------------------------------------------------------------
+\section{Natural Numbers \& Integers}
+
+\textbf{Natural numbers} are the positive whole numbers, denoted by $\mathbb{N}$.\\
+The \textbf{integers} are positive and negative whole numbers, denoted by $\mathbb{Z}$.
+
+%-------------------------------------------------------------------------
+\section{Divisibility \& Primes}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $d, n \in \mathbb{N}$. We say $d$ \textbf{divides} $n$ if there exists some $k \in \mathbb{N}$ with $n=dk$. $d | n$ denotes $d$ divides $n$. $d\not | n $ means $d$ does not divide $n$.
+\end{frameblue}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $n \in \mathbb{N}$.
+    \begin{itemize}
+        \item $n$ is prime if $n > 1$ and $n$ has no factors except 1 and itself.
+        \item $n$ is composite if $n > 1$ and $n$ is not prime.
+    \end{itemize}
+\end{frameblue}
+
+Every natural number can be written as a product of primes, and this prime factorisation is unique (up to re-ordering). This is the \textbf{prime factorisation} of $n$. It is called the \textbf{Fundamental Theorem of Arithmetic.}
+
+%-------------------------------------------------------------------------
+\section{Greatest Common Divisors}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $a,b \in \mathbb{n}$. The \textbf{greatest common divisor} of $a$ and $b$ is the largest natural number $d$ such that $d | a$ and $d | b$. $gcd(a,b)$ denotes the greatest common divisor of $a$ and $b$. $a$ and $b$ are \textbf{coprime} if $gcd(a,b)=1$ - they have no common factors other than 1.
+\end{frameblue}
+\begin{frameblue}
+    \textbf{Euclid's Algorithm for Finding \textit{gcd(a,b)}:}\\
+    $a, b, \in \mathbb{N}$ with $a /geq b$;
+    \begin{itemize}
+        \item Find $q, r \in \mathbb{Z}$ such that $a = qb + r$ and $0 \leq r < b$.
+        \item If $r = 0$, then $gcd(a,b) = b$.
+        \item If $r > 0$ then replace $a, b$ with $b, r$ and repeat.
+    \end{itemize}
+\end{frameblue}
+
+\section{Lowest Common Multiple}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $a,b \in \mathbb{N}$. The \textbf{lowest common multiple} of $a$ and $b$ is the smallest $m \in \mathbb{N}$ such that $a | m$ and $b | m$. $lcm(a,b)$ denotes the lowest common multiple of $a$ and $b$.
+\end{frameblue}
+
+Suppose $a, b \in \mathbb{N}$, then
+\begin{equation}
+    lcm(a,b) = \frac{a \cdot b}{gcd(a,b)}
+\end{equation}
+
+%-------------------------------------------------------------------------
+\chapter{Sets}
+%-------------------------------------------------------------------------
+\section{Notation}
+
+A \textbf{set} is a collection of objects gathered together, which are called the \textbf{elements of the set.} $x \in A$ means $x$ is an element of A. If two sets have the same elements, they're the same set, and the order of the elements does not matter. List notation can be used provided there is an obvious pattern.\\
+
+Some special sets have names;
+\begin{itemize}
+    \item $\mathbb{N}$ - natural numbers
+    \item $\mathbb{Z}$ - integers
+    \item $\mathbb{Q}$ - rational numbers
+    \item $\emptyset$ - empty set
+\end{itemize}
+
+%-------------------------------------------------------------------------
+\section{Subsets}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Let $A$ and $B$ be sets. Then $A$ is a \textbf{subset} of $B$ if every element of $A$ is an element of $B$. \\
+    It is denoted by $A \subseteq B$ to mean "$A$ is a subset of $B$".\\
+    $A \nsubseteq B$ means $A$ is not a subset of $B$.\\
+    $A \subset B$ means $A$ is a subset of $B$ and $A \neq B$ - which is called a \textbf{proper subset.}
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\section{Set Operations}
+
+\textbf{Union:}\\
+$A \cup B = \{ x: x \in A \: or \: x \in B \}$\\
+
+\textbf{Intersection:}\\
+$A \cap B = \{ x: x \in A \: and \: x \in B \}$\\
+
+\textbf{Difference:}\\
+$A \backslash B = \{ x: x \in A \: and \: x \notin B \}$\\
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Two sets $A$ and $B$ are \textbf{disjoint} if $A \cap B = \emptyset$
+\end{frameblue}
+
+\begin{framered}
+    \textbf{Preposition 5.1:}\\
+    Let $A, B, C$ be sets, then;
+    \begin{equation}
+        (A \cap B) \cap C = A \cap (B \cap C)
+    \end{equation}
+    \begin{equation}
+        (A \cup B) \cup C = A \cup (B \cup C)
+    \end{equation}
+    \begin{equation}
+        (A \triangle B) \triangle C = A \triangle (B \triangle C)
+    \end{equation}
+    \begin{equation}
+        A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
+    \end{equation}
+    \begin{equation}
+        A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+    \end{equation}
+\end{framered}
+
+\begin{frameblack}
+    \textbf{Proof (of 5.2):}
+    \begin{equation*}
+        x \in (A \cup B) \cup C
+    \end{equation*}
+    \begin{equation*}
+        \implies x \in A \cup B \: or \: x \in C
+    \end{equation*}
+    \begin{equation*}
+        \implies x \in A \: or \: x \in B \: or \: x \in C
+    \end{equation*}
+    The same can be done for $x \in A \cup (B \cup C)$.\\
+    So $ x \in (A \cup B) \cup C$ and $x \in A \cup (B \cup C)$ have the same elements $\therefore$ are the same set.
+    \qed
+\end{frameblack}
+
+\begin{frameblack}
+    \textbf{Proof (of 5.5):}\\
+    $x \in  A \cap (B \cup C)$. So $x \in A \: and \: x \in B \cup C$. So $x \in B \: or \: x \in C$.\\
+    \textbf{Case 1:} If $x \in B$ then $x \in A \cap B$.\\
+    \textbf{Case 2:} If $x \in C$ then $x \in A \cap C$.\\
+    So either $x \in A \cap B$ or $x \in A \cap C$, so;\\
+    $x \in (A \cap B) \cup (A \cap C)$.
+    \qed
+\end{frameblack}
+
+%-------------------------------------------------------------------------
+\section{Cartesian Product}
+ 
+We write $(a,b)$ for the \textbf{ordered pair} '$a$ then $b$'.
+\begin{frameblue}
+    \textbf{Definition:}\\
+    If $A$ and $B$ are sets, the \textbf{Cartesian product} of $A$ and $B$ is the set of all ordered pairs $a,b)$ with $a \in A$ and $b \in B$, and is denoted by $A \times B$.
+    \begin{equation*}
+        A \times B = \{ (a,b) : a \in A and b \in B \}
+    \end{equation*}
+\end{frameblue}
+
+For example,
+\begin{equation}
+    \{ 1,2\} \times \{ 2,3\} = \{ (1,2),(1,3),(2,2),(2,3) \}
+\end{equation}
+%-------------------------------------------------------------------------
+
+\section{Cardinality}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    If $A$ is a finite set then the \textbf{cardinality} of $A$ is the number of elements it contains, denoted $|A|$
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\section{Counting Subsets}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    If $X$ is a set, the \textbf{power set} of $X$ is the set of all subsets of $X$, denoted by $\mathcal{P}(X)$.
+    \begin{equation*}
+        \mathcal{P}(X) = \{ S : S \subseteq X \}
+    \end{equation*}
+\end{frameblue}
+
+For example,
+\begin{equation}
+    \mathcal{P}(\{ 1,2,3\} ) = \{ \emptyset, \{ 1 \}, \{2 \}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}, \{1,2,3\} \}
+\end{equation}
+And $|\mathcal{P}(\{ 1,2,3\} ) = 8$, meaning it has 8 subsets.\\
+
+\textbf{Multiplication Principle:}\\
+Suppose we want to find the ways of choosing an object. If we break down the choosing procedure into a series of choices, such that the number of options at each stage is independent of the options we chose at earlier stages, then the overall number of options is the product of the number of options at each stage.
+
+\begin{framered}
+    \textbf{Theorem 5.2:}\\
+    Suppose $X$ is a finite setm and $|X| = n$. Then $|\mathcal{P}(X)| = 2^n$.
+\end{framered}
+
+%-------------------------------------------------------------------------
+\section{Counting Subsets of a Particular Size}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $X$ is a set and $k \in \mathbb{Z}$. A \textbf{\textit{k}-element subset} of $X$ means a subset with exactly $k$-elements.\\
+    If $n \geq 0$, we define $\binom{n}{k}$ to be the number of $k$-element subsets of the set $\{1,...,n\}$.
+\end{frameblue}
+
+The notation $\binom{n}{k}$ is $n$ choose $k$ - the number of ways of choosing $k$ elements from $1,...,n$. The numbers are called binomial coefficients.\\
+
+For example, the subsets of $\{1,2,3\}$ are;
+\begin{equation*}
+     \emptyset, \{ 1 \}, \{2 \}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}, \{1,2,3\} 
+\end{equation*}
+So,
+\begin{equation*}
+    \binom{3}{0} = 1, \; \; \; \; \; \binom{3}{1} = 3  \; \; \; \; \; \binom{3}{2} = 3  \; \; \; \; \; \binom{3}{3} = 1
+\end{equation*}
+and $\binom{n}{k} = 0$ for any other $k$. 
+
+\begin{framered}
+    \textbf{Theorem 5.3}\\
+    Suppose $n$ and $k$ are integers with $0 \leq k \leq n$. Then $\frac{n!}{k!(n-k)!}$
+\end{framered}
+
+%-------------------------------------------------------------------------
+\chapter{Functions}
+%-------------------------------------------------------------------------
+\section{Definition of Functions}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Let $A$ and $B$ be sets. A \textbf{function} from $A$ to $B$ is a rule which assigns an element of $B$ to each element of $A$.\\
+    We write $f: A \rightarrow B$ to mean '$f$ is a function from $A$ to $b$.\\
+    If $a \in A$, we write $f(a)$ for the element of $B$ assigned to $a$ by $f$. We write $a \mapsto b$ to mean $f(a) = b$, and say that $f$ \textbf{maps} $a$ to $b$.\\
+    If $b$ is a number, we may call $b$ the value of $f$ at $a$.\\
+    The set $A$ is called the \textbf{domain} of $f$, and $B$ is the \textbf{codomain.}
+    \end{frameblue}
+
+Functions can fail if;
+\begin{itemize}
+    \item There is an element of $A$ for which $f$ is undefined.
+    \item There is an element of $A$ for which $f$ is defined to have two different values.
+    \item There is a value of $f$ that lies outside $B$.
+\end{itemize}
+
+It is important to distinguish the range from the codomain. The codomain is the set of 'allowed' values. The range is the set of values that actually occur, and is a subset of the codomain.
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    If $f: A \rightarrow B$, the \textbf{range} is the set of all elements of $B$ which actually occur as the image of some element of $A$:\\
+    \begin{equation}
+        range(f) = \{f(a) : a \in A \}
+    \end{equation}
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\section{Injective, Surjective, Bijective}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $f \rightarrow B$ is a function.
+    \begin{itemize}
+        \item f is \textbf{injective} if $f(a_1) \neq f(a_2)$ whenever $a_1, a_2 \in A$ and $a_1 \neq a_2$.
+        \item f is \textbf{surjective} if for every $b \in B$ there is some $a \in A$ with $f(a) = b$.
+        \item f is \textbf{bijective} if it is both injective and subjective.
+    \end{itemize}
+    A bijective function is a \textbf{bijection.}
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\section{Inverses}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $f : A \rightarrow B$ is a function. An \textbf{inverse} to $f$ is a function $g : B \rightarrow A$ satisfying the two conditions;
+    \begin{itemize}
+        \item $g(f(a)) = a$ for all $a \in A$
+        \item $f(g(b)) = b$ for all $b \in B$
+    \end{itemize}
+    If $f$ has an inverse then $f$ is \textbf{invertible}.
+\end{frameblue}
+
+\begin{framered}
+    \textbf{Theorem 6.1:}\\
+    Suppose $f : A \rightarrow B$\\
+    Then $f$ has an inverse if and only if it is bijective.
+\end{framered}
+
+\begin{frameblack}
+    \textbf{Proof}:\\
+    
+    \textbf{Assuming \textit{f} is bijective}\\
+    Because $f$ is surjective there exists $a \in A$ such that $f(b) = b$. And let $f(a) = a$\\
+    For any $b \in B$, $f(g(b)) = f(a) = b$\\
+    Let $b = f(a)$, then $f(g(b)) = b$ by the previous step, meaning $f(g(a)) = f(a)$.\\
+    By the contrapositive of the injective property, $f(g(f(a))) = f(a) \implies g(f(a)) = a$.\\
+
+    \textbf{Assuming \textit{f} has an inverse}\\
+    \textbf{\textit{f} is injective:}\\
+    If $f(a_1) = f(a_2)$ then applying the inverse function to both sides gives $g(f(a_1)) = g(f(a_2))$. By the definition of inverse this implies $a_1 = a_2$ and so $f$ is injective.\\
+    \textbf{\textit{f} is surjective:}\\
+    If $b \in B$ then $g(b) \in A$. The definition of inverse means $f(g(b)) = b$. So there is an $a \in A$ such that $f(a) = b$, and so $f$ is surjective.\\
+    Therefore $f$ is bijective.\\
+    \qed
+    \end{frameblack}
+
+%-------------------------------------------------------------------------
+\section{Restriction \& Composition}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $f : A \rightarrow B$ is a function, and $D \subseteq A$. The \textbf{restriction} of $f$ to $D$ is the function $g : D \rightarrow B$ defined by $g(d) f(d)$ for all $d \in D$. The function is written as $f|_D$.
+\end{frameblue}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $A, B, C are sets$, $f$ is a function from $A$ to $B$, and $g$ is a function from $B$ to $C$. The \textbf{composition} $g \circ f$ is the function from $A$ to $C$ defined by $(g \circ f)(a) = g(f(a))$
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\section{Bijections \& Cardinality}
+
+\begin{framered}
+    \textbf{Theorem 6.2:}\\
+    Let $A$ and $B$ be finite sets and $f : A \rightarrow B$ be a function.
+    \begin{itemize}
+        \item If $f$ is injective then $|A| \leq |B|$.
+        \item If $f$ is surjective then $|A| \geq |B|$.
+        \item If $f$ is bijective then $|A| = |B|$.
+    \end{itemize}
+\end{framered}
+
+%-------------------------------------------------------------------------
+\section{Images \& Inverse Images of Subsets}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $f : A \rightarrow B$ is a function, and $C \subseteq A$. The \textbf{image} of $C$ under $A$ is the set of all values of $f$ at elements of $C$, that is the set
+    \begin{equation*}
+        f(C) = \{f(a) : a \in C\}
+    \end{equation*}
+\end{frameblue}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $f : A \rightarrow B$ is a function and $D \subseteq B$. The \textbf{inverse image} of $D$ under $f$ us the set of all elements of $A$ that get mapped to $D$ by $f$;
+    \begin{equation*}
+        f^{-1}(D) = \{a \in A : f(a) \in D\}
+    \end{equation*}
+    This definition does not assume $f$ is invertible. This definition makes sense for any function $f$.
+\end{frameblue}
+%-------------------------------------------------------------------------
+\chapter{Relations \& Sequences}
+%-------------------------------------------------------------------------
+\section{Relations}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $X$ is a set. A \textbf{relation} on $X$ is a property which may or may not hold for each ordered pair of elements of X.
+\end{frameblue}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    A relation $R$ on a set $X$ is:
+    \begin{itemize}
+        \item \textbf{Reflexive} if $a \: R \: A$ for all $a \in X$.
+        \item \textbf{Symmetric} if $a \: R \: b$ implies $b \: R \: a$ for $a,b \in X$.
+        \item \textbf{Anti-symmetric} if $a \: R \: b$ and $b \: R \: a$ imply that $a = b$, for $a, b \in X$.
+        \item \textbf{Transitive} if $a \: R \: b$ and $b \: R \: c$ imply that $a \: R \: c$ for $a,b,c \in X$.
+    \end{itemize}
+\end{frameblue}
+
+\textbf{Partial Order:}\\
+A relation which is reflexive, transitive, and anti-symmetric.\\
+
+\textbf{Equivalence Relation:}\\
+A relation which is reflexive, transitive, and symmetric.
+
+%-------------------------------------------------------------------------
+\section{Sequences}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    A \textbf{sequence} is an ordered list $a_1,a_2,a_3...$ of elements of some set $X$.
+\end{frameblue}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    A \textbf{subsequence} is a sequence obtained from another sequence by deleting some elements and keeping the rest in the same order.
+\end{frameblue}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    A sequence of numbers is;
+    \begin{itemize}
+        \item \textbf{Increasing} if $x_k < x_{k+1}$ for all $k \in \mathbb{N}$.
+        \item \textbf{Decreasing} if $x_k > x_{k+1}$ for all $k \in \mathbb{N}$.
+        \item \textbf{Weakly increasing} if $x_k \leq x_{k+1}$ for all $k \in \mathbb{N}$.
+        \item \textbf{Weakly decreasing} if $x_k \geq x_{k+1}$ for all $k \in \mathbb{N}$.
+        \item \textbf{Constant} if $x_k = x_{k+1}$ for all $k \in \mathbb{N}$.
+    \end{itemize}
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\chapter{Rational \& Real Numbers}
+%-------------------------------------------------------------------------
+\section{Rational Numbers}
+
+A \textbf{rational number} is an expression $\frac{a}{b}$ where $a,b \in \mathbb{Z}$ and $b \neq 0$.\\
+
+Each integer is a rational number $n = \frac{n}{1}$.\\
+
+$\mathbb{Q}$ denotes the set of rational numbers.\\
+
+\begin{itemize}
+    \item There is no smallest possible rational number.
+    \item Given two rational numbers such that $a < b$, we can find another rational number $c$ such that $a < c < b$.
+    \item This means we cannot talk about consecutive rational numbers, so induction proofs are not possible.
+\end{itemize}
+
+%-------------------------------------------------------------------------
+\section{Real Numbers}
+
+The real numbers extend the rational numbers to 'fill in the gaps' to include numbers like $\sqrt{2}$.\\
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    A \textbf{real number} is an infinite decimal, of the form $n.a_1a_2a_3...$ where $n \in \mathbb{Z}$ and $a_1,a_2,a_3,... \in \{1,2,3,4,5,6,7,8,,9\}$.\\
+    The set of all real numbers is denoted by $\mathbb{R}$.\\
+    The elemts of the set $\mathbb{R} \backslash \mathbb{Q}$ are called \textbf{irrational numbers.}
+\end{frameblue}
+
+Extending from the rationals to the reals enables us to solve more equations, like $x^2 = 2$
+
+%-------------------------------------------------------------------------
+\section{Decimal Expansions}
+
+A \textbf{terminating decimal expansion} is;
+\begin{equation*}
+    0.125 = 0 + \frac{1}{10} + \frac{2}{100} + \frac{5}{1000}
+\end{equation*}
+Some rational numbers have an \textbf{infinite decimal expansion};
+\begin{equation*}
+    \frac{1}{3} = 0.33333...
+\end{equation*}
+\begin{equation*}
+    \frac{1}{3} = 0 + \frac{3}{10} + \frac{3}{100} + \frac{3}{1000} + ...
+\end{equation*}
+With rational numbers, the expressions are all \textbf{eventually periodic} - after a certain point they settle into a repeating pattern.\\
+
+For example;
+\begin{equation*}
+    0.999... = \frac{9}{10} + \frac{9}{100} + \frac{9}{1000} +... = \frac{\frac{9}{10}}{1-\frac{1}{10}} = 1
+\end{equation*}
+
+%-------------------------------------------------------------------------
+\section{Upper Bounds}
+
+Suppose $X$ is a \textbf{finite} set of real numbers. Then $X$ has a \textbf{maximum}; this means an element $x \in X$ such that $y \leq x$ for all $y \in X$. It is denoted by $max\{1,4,2,7,3\} = 7.$\\
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $X \subseteq \mathbb{R}$, and $u \in \mathbb{R}$. $u$ is an \textbf{upper bound} for $X$ if $x \leq u$ for all $x \in X$.\\
+    $X$ is \textbf{bounded above} if it has an upper bound.
+\end{frameblue}
+
+Any non-empty set of integers has a maximum if and only if it is bounded above. But the same is not true for sets of rational and real numbers. For example, $X = \{x \in \mathbb{Q} : x < 0$ is bounded above - 0 is the upper bound - but it has no maximum.\\
+Zero is similar to its maximum, but it is not a maximum as it doesn't belong to $X$.
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Suppose $X$ is a non-empty set of real numbers which is bounded above. A \textbf{supremum} for $X$ is a real number $s$ such that:
+    \begin{itemize}
+        \item $s$ is an upper bound for $X$, and
+        \item if $t$ is any other upper bound for $X$, then $t \geq s$.
+    \end{itemize}
+\end{frameblue}
+
+The supremum of $X$ is also called the \textbf{least upper bound}. It is an upper bound, and is smaller than any other upper bound.
+\begin{itemize}
+    \item If $X$ has a supremum then the supremum of $X$ is unique.
+    \item When $X$ has a supremum, we talk about the supremum of $X$ - denoted $sup \: X$.
+    \item We write $sup \: X = \infty$ if $X$ is not bounded above.
+    \item $sup \emptyset = -\infty$.
+\end{itemize}
+
+\begin{framered}
+    \textbf{Theorem 8.1:} \textit{(Principle of the Supremum)}\\
+    If $X$ is a non-empty set of real numbers which is bounded above, then $X$ has a supremum in $\mathbb{R}$.
+\end{framered}
+
+Everything above can also be done with \textbf{lower bounds}.
+\begin{itemize}
+    \item A \textbf{lower bound} for $X$ is a real number $u$ such that $u \leq x$ for all $x \in X$, and $X$ is \textbf{bounded below} if it has a lower bound.
+    \item The \textbf{infimum} of $X$ (if it exists) is the greatest lower bound, denoted $inf \: X$.
+    \item $inf \: X = -\infty$ if it is not bounded below.
+\end{itemize}
+
+%-------------------------------------------------------------------------
+\chapter{Complex Numbers}
+%-------------------------------------------------------------------------
+\section{Definition \& Operations}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    A \textbf{complex number} is an expression $a + bi$ where $a,b \in \mathbb{R}$.\\
+    We write $\mathbb{C}$ to denote the set of all complex numbers.
+\end{frameblue}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Let $z = a + bi \in \mathbb{C}$ be a complex number. The \textbf{complex conjugate} of $z$ is the number $a - bi$, denoted by $\Bar{z}$. 
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\section{The Complex Plane}
+
+The \textbf{complex plane} is the plane $\mathbb{R}^2$, with each point $(a,b)$ representing the complex number $a + bi$. The x-axis is called the \textbf{real axis}, and the y-axis is called the \textbf{complex axis}.\\
+
+Considering a line from the origin to the point $z = a + bi$. Another way of specifying $z$ is to give the length $r$ of this line, and the angle $\theta$ between it and the positive real axis - measured anti-clockwise.\\
+The real part of $z$ is $r \cos{\theta}$,
+the imaginary part of $z$ is $r \sin{\theta}$.\\
+
+\begin{center}
+    The \textbf{polar form }of $z$:
+    \begin{equation}
+        z = r(\cos{\theta} + i\sin{\theta})
+    \end{equation}
+\end{center}
+
+\begin{frameblue}
+    \textbf{Definition:}\\
+    Let $z = a + bi \in C$ be a complex number.
+    \begin{itemize}
+        \item The \textbf{modulus} of $z$ is $\sqrt{a^2+b^2}$, and is denoted by $|z|$.
+        \item If $z \neq 0$, \textbf{the argument} of $z$ is the unique $\theta$ with $\frac{b}{|z|} = \sin{\theta}$, $\frac{a}{|z|} = \cos{\theta}$, and $0 \leq \theta \leq 2\pi$ - denoted by $arg(z)$.
+    \end{itemize}
+\end{frameblue}
+
+%-------------------------------------------------------------------------
+\section{Roots of Unity}
+
+Given $n \in \mathbb{N}$, which complex numbers $z$ satisfy $z^n = 1$.\\
+The numbers $z$ are called the \textbf{\textit{n}th roots of unity.}\\
+$z = r(\cos{\theta}+i\sin{\theta})$\\
+$|z| = r \therefore |z^n| = r^n$\\
+So if $z^n = 1$, then $r^n+1$, where $r$ is a non-negative real number.\\
+This can only happen if $r=1$, so $z = \cos{\theta} + i\sin{\theta}$\\
+By de Moivre; if $z^n = 1$, then $\cos{\theta} + i\sin{\theta} = 1$\\
+So $\cos{n\theta} = 1$, and $\sin{n\theta} = 0$.\\
+$\cos{\theta} = 1$ if and only if $\theta = 2\pi m$ for some integer $m$, and in this case $\sin{\theta} = 0$. So,
+\begin{equation*}
+    z = \cos{\frac{2\pi m}{n}} + i\sin{\frac{2\pi m}{n}}
+\end{equation*}
+
+Any polynomial equations can be solved by
+\begin{equation}
+    z = \frac{-b \mp \sqrt{b^2-4ac}}{2a}
+\end{equation}
+
+The \textbf{Fundamental Theorem of Algebra} states that a polynomial equation of degree $n$ always has $n$ roots in $\mathbb{C}$.
+
+
+
+\end{document}
