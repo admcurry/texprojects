@@ -1,0 +1,6 @@
+#Piecewise function
+\mathbf{u \cdot v}=
+\begin{cases}
+|\mathbf{u \cdot v}| \cos{\theta}   & \text{if} \ \mathbf{u} \neq 0, \mathbf{v} \neq 0 \\
+0  & \text{if} \ \mathbf{u} = 0 \ \text{or} \ \mathbf{v} = 0
+\end{cases}
